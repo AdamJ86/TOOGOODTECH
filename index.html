@@ -597,27 +597,29 @@
     <h2>Ready to <em>Connect?</em></h2>
   </div>
   <div class="contact-box reveal">
-    <div class="cform">
+    <form class="cform" id="contact-form" onsubmit="handleSubmit(event)">
       <div class="frow">
-        <div class="fg"><label>First Name</label><input type="text" placeholder="John"/></div>
-        <div class="fg"><label>Last Name</label><input type="text" placeholder="Doe"/></div>
+        <div class="fg"><label for="fname">First Name</label><input id="fname" name="first_name" type="text" placeholder="John" required/></div>
+        <div class="fg"><label for="lname">Last Name</label><input id="lname" name="last_name" type="text" placeholder="Doe" required/></div>
       </div>
-      <div class="fg"><label>Email Address</label><input type="email" placeholder="you@company.com"/></div>
-      <div class="fg"><label>Company / Brand</label><input type="text" placeholder="Your Company"/></div>
-      <div class="fg"><label>I'm Interested In</label>
-        <select><option value="">Select a service...</option>
+      <div class="fg"><label for="email">Email Address</label><input id="email" name="email" type="email" placeholder="you@company.com" required/></div>
+      <div class="fg"><label for="company">Company / Brand</label><input id="company" name="company" type="text" placeholder="Your Company"/></div>
+      <div class="fg"><label for="service">I'm Interested In</label>
+        <select id="service" name="service">
+          <option value="">Select a service...</option>
           <option>Sponsored Video</option><option>Product Review</option>
           <option>Brand Consulting</option><option>Something Else</option>
         </select>
       </div>
-      <div class="fg"><label>Tell Me About Your Project</label>
-        <textarea placeholder="Quick overview of what you're looking for..."></textarea>
+      <div class="fg"><label for="message">Tell Me About Your Project</label>
+        <textarea id="message" name="message" placeholder="Quick overview of what you're looking for..." required></textarea>
       </div>
-      <button class="fsub" onclick="handleSubmit(this)">
+      <button type="submit" class="fsub" id="submit-btn">
         Send Message
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
-    </div>
+      <div id="form-msg" style="display:none;text-align:center;padding:12px;border-radius:8px;font-family:'Syne',sans-serif;font-weight:600;font-size:.9rem;"></div>
+    </form>
     <div class="contact-right">
       <h3>Let's Make Something <em style="color:var(--accent);font-style:normal;">Great</em></h3>
       <p>Have a product you want in front of a highly engaged tech audience? Want a long-term partnership? I'm all ears — reach out and let's talk.</p>
@@ -663,15 +665,75 @@ window.addEventListener('scroll',()=>{
   document.getElementById('main-nav').classList.toggle('scrolled',scrollY>60);
 });
 
-// ── FORM ──
-function handleSubmit(btn){
-  btn.innerHTML='✓ Message Sent!';
-  btn.style.background='linear-gradient(135deg,#00ff88,#00d4aa)';
-  setTimeout(()=>{
+// ── FORM — wired to Formspree ──
+async function handleSubmit(e){
+  e.preventDefault();
+  const form = document.getElementById('contact-form');
+  const btn  = document.getElementById('submit-btn');
+  const msg  = document.getElementById('form-msg');
+
+  // Basic validation
+  const email = form.email.value.trim();
+  const fname = form.first_name.value.trim();
+  if(!fname || !email){
+    msg.style.display='block';
+    msg.style.background='rgba(255,92,43,.15)';
+    msg.style.border='1px solid rgba(255,92,43,.4)';
+    msg.style.color='#ff8060';
+    msg.textContent='Please fill in your name and email.';
+    return;
+  }
+
+  // Loading state
+  btn.disabled=true;
+  btn.innerHTML='Sending... <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="animation:spin2 .8s linear infinite"><path d="M12 2a10 10 0 0 1 10 10h-2a8 8 0 0 0-8-8V2z"/></svg>';
+
+  try{
+    const res = await fetch('https://formspree.io/f/mjglwkgw',{
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body: JSON.stringify({
+        first_name: form.first_name.value,
+        last_name:  form.last_name.value,
+        email:      form.email.value,
+        company:    form.company.value,
+        service:    form.service.value,
+        message:    form.message.value
+      })
+    });
+
+    if(res.ok){
+      btn.innerHTML='✓ Message Sent!';
+      btn.style.background='linear-gradient(135deg,#00ff88,#00d4aa)';
+      btn.style.color='#000';
+      msg.style.display='block';
+      msg.style.background='rgba(0,255,136,.1)';
+      msg.style.border='1px solid rgba(0,255,136,.3)';
+      msg.style.color='#00ff88';
+      msg.textContent="🎉 Got it! I'll be in touch soon.";
+      form.reset();
+      setTimeout(()=>{
+        btn.innerHTML='Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+        btn.style.background='';btn.style.color='';btn.disabled=false;
+        msg.style.display='none';
+      },5000);
+    } else {
+      throw new Error('Server error');
+    }
+  } catch(err){
     btn.innerHTML='Send Message <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
-    btn.style.background='';
-  },3000);
+    btn.style.background='';btn.disabled=false;
+    msg.style.display='block';
+    msg.style.background='rgba(255,92,43,.15)';
+    msg.style.border='1px solid rgba(255,92,43,.4)';
+    msg.style.color='#ff8060';
+    msg.textContent='Something went wrong. Please email ajamespt86@gmail.com directly.';
+  }
 }
+// spinner keyframe injected
+const ss=document.createElement('style');
+ss.textContent='@keyframes spin2{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
+document.head.appendChild(ss);
 
 // ── YOUTUBE ──
 const API_KEY = 'AIzaSyARvf8yO_RwV2qNkLy-shRiy6ZUQYQd0FU';
