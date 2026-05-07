@@ -1260,9 +1260,32 @@ async function handleSubmit(e){
 
 // ── YOUTUBE LIVE STATS & CHANNEL ID ──
 const API_KEY = 'AIzaSyARvf8yO_RwV2qNkLy-shRiy6ZUQYQd0FU';
-const CHANNEL_ID = 'UCHPes4IqVxxQ0KG8mNfGcAw';
-const HANDLE = 'toogoodtech';
+const CHANNEL_ID = 'UCHPes4lqVxxQ0KG8mNfGcAw'; // correct lowercase l
 const CATS = ['⚡ Latest','How-To','Deep Dive','Comparison','Guide'];
+
+// ── HELPERS ──
+function parseDur(iso){
+  if(!iso) return '';
+  const m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if(!m) return '';
+  const h=+m[1]||0, min=+m[2]||0, s=+m[3]||0;
+  return h>0 ? `${h}:${String(min).padStart(2,'0')}:${String(s).padStart(2,'0')}` : `${min}:${String(s).padStart(2,'0')}`;
+}
+function fv(n){
+  n=parseInt(n||0);
+  if(n>=1e6) return (n/1e6).toFixed(1).replace(/\.0$/,'')+'M';
+  if(n>=1e3) return (n/1e3).toFixed(1).replace(/\.0$/,'')+'K';
+  return n||'';
+}
+function ago(d){
+  if(!d) return '';
+  const diff = Math.floor((Date.now()-new Date(d))/1000);
+  if(diff<3600)   return Math.floor(diff/60)+'m ago';
+  if(diff<86400)  return Math.floor(diff/3600)+'h ago';
+  if(diff<2592000)return Math.floor(diff/86400)+'d ago';
+  if(diff<31536000)return Math.floor(diff/2592000)+'mo ago';
+  return Math.floor(diff/31536000)+'y ago';
+}
 
 function fmtNum(n){
   n = parseInt(n||0);
@@ -1372,19 +1395,20 @@ const FALLBACK_VIDEOS = [
 async function loadVideos(){
   showSkel();
 
-  // Strategy 1: YouTube API — find channel by handle first, then fetch videos
+  // Show hardcoded fallback immediately so section is never blank
+  hideSkel();
+  renderCards(FALLBACK_VIDEOS.map(v=>({...v, published:'', thumbnail:null, dur:''})));
+
+  // Strategy 1: YouTube API — resolve channel by handle then fetch videos
   try{
-    // Get real channel ID via handle (more reliable than hardcoded ID)
-    const chanId = window.REAL_CHANNEL_ID || CHANNEL_ID;
-    
-    // First try to resolve channel via handle if we don't have it yet
-    let resolvedId = chanId;
+    // Resolve real channel ID via handle
+    let resolvedId = window.REAL_CHANNEL_ID || CHANNEL_ID;
     if(!window.REAL_CHANNEL_ID){
       try{
         const cr = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=toogoodtech&key=${API_KEY}`,{signal:AbortSignal.timeout(6000)});
         const cd = await cr.json();
-        if(cd.items?.length){ resolvedId = cd.items[0].id; window.REAL_CHANNEL_ID = resolvedId; console.log('Resolved channel ID:', resolvedId); }
-      } catch(e){ console.log('Handle resolve failed, using fallback ID'); }
+        if(cd.items?.length){ resolvedId = cd.items[0].id; window.REAL_CHANNEL_ID = resolvedId; console.log('✅ Resolved channel ID:', resolvedId); }
+      } catch(e){ console.log('Handle resolve failed:', e.message); }
     }
 
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${resolvedId}&maxResults=5&order=date&type=video&key=${API_KEY}`;
@@ -1479,6 +1503,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   fetchChannelStats();
 });
 
-</script>
 </body>
 </html>
