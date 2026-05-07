@@ -1319,20 +1319,25 @@ applyStats(FALLBACK.subs, FALLBACK.views, FALLBACK.videos);
 // ── CHANNEL STATS — tries to get live numbers from YouTube API ──
 async function fetchChannelStats(){
   try{
-    const res = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${API_KEY}`,
-      {signal:AbortSignal.timeout(8000)}
-    );
-    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    // Use forHandle to find the channel - more reliable than hardcoded ID
+    const url = `https://www.googleapis.com/youtube/v3/channels?part=statistics,id&forHandle=toogoodtech&key=${API_KEY}`;
+    console.log('Fetching stats...');
+    const res = await fetch(url, {signal:AbortSignal.timeout(8000)});
     const data = await res.json();
-    if(data.error) throw new Error(data.error.message);
-    if(!data.items?.length) throw new Error('No data');
+    console.log('Stats response:', JSON.stringify(data).substring(0,400));
+    if(data.error) throw new Error(data.error.message + ' (code:'+data.error.code+')');
+    if(!data.items?.length) throw new Error('No channel found for @toogoodtech');
+    
+    // Save the real channel ID for video fetching
+    const realId = data.items[0].id;
+    console.log('✅ Real channel ID:', realId);
+    window.REAL_CHANNEL_ID = realId;
+    
     const s = data.items[0].statistics;
     applyStats(s.subscriberCount, s.viewCount, s.videoCount);
-    console.log(`✅ Live stats updated from YouTube API`);
+    console.log(`✅ Live stats — Subs:${s.subscriberCount} Views:${s.viewCount} Videos:${s.videoCount}`);
   } catch(err){
-    console.log(`ℹ️ Using fallback stats (API restricted to toogoodtech.com): ${err.message}`);
-    // Fallback already shown — nothing to do
+    console.error(`❌ Stats API error: ${err.message}`);
   }
 }
 
@@ -1352,88 +1357,77 @@ const statsObs = new IntersectionObserver(entries=>{
 const statsSection = document.getElementById('stats');
 if(statsSection) statsObs.observe(statsSection);
 
-// ── VIDEOS ──
+// ── VIDEOS — 3 strategies ──
 function showSkel(){document.getElementById('skeletons').style.display='grid';}
 function hideSkel(){document.getElementById('skeletons').style.display='none';}
 
-// Strategy 1: YouTube API directly (works on toogoodtech.com)
-// Strategy 2: RSS via allorigins proxy (works everywhere, no key needed)
+const FALLBACK_VIDEOS = [
+  {id:'q6GHuDmwM28', title:'Fifine K688 — Best Budget Mic for Creators?',    views:'5800'},
+  {id:'hgjBc2XBWMQ', title:'Bambu Lab A1 Mini Review (2026)',                 views:'3500'},
+  {id:'oWAwhRY2-J8', title:'How to Safely Remove Stubborn PETG Prints',      views:'1800'},
+  {id:'i-yVfbQJdkU', title:'DAY 1 — Creator Gut Cut CHALLENGE!',             views:'1800'},
+  {id:'N9pKA3NYJT4', title:'M1 MacBook Pro in 2026: Still Worth Buying?',    views:'1700'},
+];
+
 async function loadVideos(){
   showSkel();
 
-  // Try direct API first
+  // Strategy 1: YouTube API — find channel by handle first, then fetch videos
   try{
-    const vr = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&maxResults=5&order=date&type=video&key=${API_KEY}`,
-      {signal:AbortSignal.timeout(8000)}
-    );
-    const vd = await vr.json();
-    if(vd.error) throw new Error(vd.error.message);
-    if(!vd.items?.length) throw new Error('No items');
+    // Get real channel ID via handle (more reliable than hardcoded ID)
+    const chanId = window.REAL_CHANNEL_ID || CHANNEL_ID;
+    
+    // First try to resolve channel via handle if we don't have it yet
+    let resolvedId = chanId;
+    if(!window.REAL_CHANNEL_ID){
+      try{
+        const cr = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=toogoodtech&key=${API_KEY}`,{signal:AbortSignal.timeout(6000)});
+        const cd = await cr.json();
+        if(cd.items?.length){ resolvedId = cd.items[0].id; window.REAL_CHANNEL_ID = resolvedId; console.log('Resolved channel ID:', resolvedId); }
+      } catch(e){ console.log('Handle resolve failed, using fallback ID'); }
+    }
 
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${resolvedId}&maxResults=5&order=date&type=video&key=${API_KEY}`;
+    console.log('Fetching videos, channelId:', resolvedId);
+    const vr = await fetch(url,{signal:AbortSignal.timeout(7000)});
+    const vd = await vr.json();
+    console.log('Videos response:', JSON.stringify(vd).substring(0,400));
+    if(vd.error) throw new Error(vd.error.message + ' (code:'+vd.error.code+')');
+    if(!vd.items?.length) throw new Error('no items in response');
     const ids = vd.items.map(i=>i.id.videoId).join(',');
-    const sr  = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,contentDetails&id=${ids}&key=${API_KEY}`,{signal:AbortSignal.timeout(8000)});
+    const sr  = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=statistics,contentDetails&id=${ids}&key=${API_KEY}`,{signal:AbortSignal.timeout(7000)});
     const sd  = await sr.json();
     const sm  = {};
     (sd.items||[]).forEach(v=>{ sm[v.id]={views:v.statistics.viewCount,dur:parseDur(v.contentDetails.duration)}; });
-
     const videos = vd.items.map(it=>{
       const th = it.snippet.thumbnails;
-      return {
-        id:        it.id.videoId,
-        title:     it.snippet.title,
-        published: it.snippet.publishedAt,
-        thumbnail: th?.maxres?.url||th?.high?.url||th?.medium?.url,
-        views:     sm[it.id.videoId]?.views||'0',
-        dur:       sm[it.id.videoId]?.dur||''
-      };
+      return {id:it.id.videoId,title:it.snippet.title,published:it.snippet.publishedAt,
+              thumbnail:th?.high?.url||th?.medium?.url,views:sm[it.id.videoId]?.views||'0',dur:sm[it.id.videoId]?.dur||''};
     });
-    hideSkel(); renderCards(videos);
-    console.log('✅ Videos loaded via API');
-    return;
-  } catch(e){ console.log('API video fetch failed, trying RSS:', e.message); }
+    hideSkel(); renderCards(videos); console.log('Videos via API'); return;
+  } catch(e){ console.log('API failed:',e.message); }
 
-  // Strategy 2: RSS feed via allorigins (no API key required)
+  // Strategy 2: RSS proxy using resolved channel ID
   try{
-    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
-    const proxy  = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-    const res    = await fetch(proxy, {signal:AbortSignal.timeout(10000)});
-    const data   = await res.json();
-    const doc    = new DOMParser().parseFromString(data.contents||'','application/xml');
+    const chanId = window.REAL_CHANNEL_ID || CHANNEL_ID;
+    const res  = await fetch('https://api.allorigins.win/get?url='+encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id='+chanId),{signal:AbortSignal.timeout(10000)});
+    const data = await res.json();
+    const doc  = new DOMParser().parseFromString(data.contents||'','application/xml');
     const entries = [...doc.querySelectorAll('entry')].slice(0,5);
-    if(!entries.length) throw new Error('No RSS entries');
-
+    if(!entries.length) throw new Error('no entries');
     const videos = entries.map(e=>{
-      const id = e.querySelector('videoId')?.textContent?.trim()||'';
-      return {
-        id,
-        title:     e.querySelector('title')?.textContent?.trim()||'',
-        published: e.querySelector('published')?.textContent||'',
-        views:     e.querySelector('statistics')?.getAttribute('views')||'0',
-        dur:       '',
-        thumbnail: `https://i.ytimg.com/vi/${id}/mqdefault.jpg`
-      };
+      const id=e.querySelector('videoId')?.textContent?.trim()||'';
+      return {id,title:e.querySelector('title')?.textContent?.trim()||'',
+              published:e.querySelector('published')?.textContent||'',
+              views:e.querySelector('statistics')?.getAttribute('views')||'0',dur:'',thumbnail:null};
     });
-    hideSkel(); renderCards(videos);
-    console.log('✅ Videos loaded via RSS');
-  } catch(e){
-    hideSkel();
-    console.log('Both video strategies failed:', e.message);
-    // Show static fallback cards linking to channel
-    renderFallbackCards();
-  }
-}
+    hideSkel(); renderCards(videos); console.log('Videos via RSS'); return;
+  } catch(e){ console.log('RSS failed:',e.message); }
 
-// Fallback cards if both API and RSS fail
-function renderFallbackCards(){
-  const grid = document.getElementById('video-grid');
-  // Use real video IDs from your channel
-  const vids = [
-    {id:'q6GHuDmwM28', title:'Fifine K688 — Best Budget Mic for Creators?'},
-    {id:'3w5j2wXVqGI', title:'Bambu Lab A1 Mini Review (2026) — 3D Printing'},
-    {id:'xvFZjo5PgG0', title:'How to Safely Remove Stubborn PETG Prints'},
-  ];
-  renderCards(vids.map(v=>({...v, thumbnail:`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`, published:'', views:'0', dur:''})));
+  // Strategy 3: hardcoded real videos
+  hideSkel();
+  renderCards(FALLBACK_VIDEOS.map(v=>({...v,published:'',thumbnail:null,dur:''})));
+  console.log('Videos via hardcoded fallback');
 }
 
 function loadWithKey(){
@@ -1443,75 +1437,42 @@ function loadWithKey(){
   loadVideos();
 }
 
-function parseDur(iso){
-  if(!iso) return '';
-  const m=iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
-  if(!m) return '';
-  const h=+m[1]||0,min=+m[2]||0,s=+m[3]||0;
-  return h>0?`${h}:${String(min).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${min}:${String(s).padStart(2,'0')}`;
-}
-function fv(n){n=parseInt(n||0);if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return n||'';}
-function ago(d){
-  if(!d) return '';
-  const diff=Math.floor((Date.now()-new Date(d))/1000);
-  if(diff<3600)return Math.floor(diff/60)+'m ago';
-  if(diff<86400)return Math.floor(diff/3600)+'h ago';
-  if(diff<2592000)return Math.floor(diff/86400)+'d ago';
-  if(diff<31536000)return Math.floor(diff/2592000)+'mo ago';
-  return Math.floor(diff/31536000)+'y ago';
-}
 
 function renderCards(videos){
   const grid = document.getElementById('video-grid');
   if(!videos||!videos.length){
-    grid.innerHTML='<p style="color:var(--text);padding:20px;">No videos found. <a href="https://youtube.com/@toogoodtech" style="color:var(--accent)">Visit the channel →</a></p>';
-    return;
+    grid.innerHTML='<p style="color:var(--text);padding:20px;">No videos found.</p>';return;
   }
   grid.innerHTML = videos.map((v,i)=>{
     const isFirst = i===0;
-    // mqdefault always exists, maxres/hq may not for older videos
-    const thumb = v.thumbnail || `https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`;
+    const id = v.id;
+    const thumb = 'https://i.ytimg.com/vi/'+id+'/mqdefault.jpg';
     const badge = isFirst
-      ? `<span class="v-badge new">⚡ Latest</span>`
-      : `<span class="v-badge">${CATS[i]||'Video'}</span>`;
-    const dur  = v.dur  ? `<div class="v-dur">${v.dur}</div>` : '';
-    const vw   = parseInt(v.views||0)>0
-      ? `<span class="v-views"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>${fv(v.views)} views</span>`
+      ? '<span class="v-badge new">⚡ Latest</span>'
+      : '<span class="v-badge">'+(CATS[i]||'Video')+'</span>';
+    const dur  = v.dur ? '<div class="v-dur">'+v.dur+'</div>' : '';
+    const views = parseInt(v.views||0);
+    const vw = views>0
+      ? '<span class="v-views"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>'+fv(views)+' views</span>'
       : '';
-    const time = v.published ? `<span>${ago(v.published)}</span>` : '';
-
-    return `<a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener" class="v-card">
-      <div class="v-thumb">
-        <img
-          src="${thumb}"
-          alt="${(v.title||'').replace(/"/g,'&quot;')}"
-          loading="lazy"
-          onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='https://i.ytimg.com/vi/${v.id}/mqdefault.jpg';}"
-        />
-        <div class="v-overlay"></div>
-        ${badge}${dur}
-        <div class="v-play"><div class="play-btn">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </div></div>
-      </div>
-      <div class="v-info">
-        <div class="v-title">${v.title||''}</div>
-        <div class="v-meta">${vw}${time}</div>
-      </div>
-    </a>`;
+    const time = v.published ? '<span>'+ago(v.published)+'</span>' : '';
+    const safeTitle = (v.title||'').replace(/"/g,'&quot;');
+    return '<a href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener" class="v-card">'
+      +'<div class="v-thumb">'
+      +'<img src="'+thumb+'" alt="'+safeTitle+'" loading="lazy"/>'
+      +'<div class="v-overlay"></div>'
+      +badge+dur
+      +'<div class="v-play"><div class="play-btn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div>'
+      +'</div>'
+      +'<div class="v-info"><div class="v-title">'+v.title+'</div><div class="v-meta">'+vw+time+'</div></div>'
+      +'</a>';
   }).join('');
-
-  // Staggered entrance
   grid.querySelectorAll('.v-card').forEach((el,i)=>{
-    el.style.opacity='0';
-    el.style.transform='translateY(16px)';
-    setTimeout(()=>{
-      el.style.transition='opacity .45s ease,transform .45s ease,border-color .3s,box-shadow .3s';
-      el.style.opacity='1';
-      el.style.transform='none';
-    }, i*70);
+    el.style.opacity='0';el.style.transform='translateY(16px)';
+    setTimeout(()=>{el.style.transition='opacity .45s ease,transform .45s ease,border-color .3s,box-shadow .3s';el.style.opacity='1';el.style.transform='none';},i*70);
   });
 }
+
 
 document.addEventListener('DOMContentLoaded',()=>{
   loadVideos();
