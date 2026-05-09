@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TooGoodTech — Tech That Actually Matters</title>
+<title>TooGoodTech — Tech That’s Too Good To Miss</title>
 <meta name="description" content="TooGoodTech — Honest tech reviews, how-to guides, and gadget deep dives. Partner with AJ for sponsored videos, product reviews, and brand consulting."/>
-<meta property="og:title" content="TooGoodTech — Tech That Actually Matters"/>
+<meta property="og:title" content="TooGoodTech — Tech That’s Too Good To Miss"/>
 <meta property="og:description" content="Honest tech reviews. Partner with TooGoodTech for sponsored videos, product reviews & brand consulting."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://toogoodtech.com"/>
@@ -821,6 +821,114 @@ footer p{color:var(--text);font-size:.76rem;}
   .hero-kpis{gap:0;}
   .vids-head{flex-direction:column;align-items:flex-start;gap:12px;}
 }
+
+
+/* =========================================================
+   TOO GOOD TECH — YouTube Channel Theme Override
+   Matches the current banner: black cinematic base, crisp white
+   typography, signature Too Good Tech red, tech-panel cards,
+   and subtle red diagonal energy lines.
+   ========================================================= */
+:root{
+  --bg:#020202;
+  --surface:#070707;
+  --surface2:#0d0d0d;
+  --surface3:#151515;
+  --border:rgba(255,255,255,0.09);
+  --border-h:rgba(255,48,48,0.50);
+  --accent:#ff1f2d;
+  --accent-bright:#ff4b55;
+  --accent-glow:rgba(255,31,45,0.20);
+  --text:#858585;
+  --text-bright:#d7d7d7;
+  --muted:#555;
+  --white:#ffffff;
+  --grad:linear-gradient(135deg,#ff1f2d 0%,#c90013 48%,#ff5b5b 100%);
+  --grad2:linear-gradient(135deg,#ff3030,#7c000c);
+  --grad3:linear-gradient(180deg,#ff4b55,#9b000b);
+}
+body{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(255,31,45,.13),transparent 24%),
+    radial-gradient(circle at 18% 8%,rgba(255,255,255,.035),transparent 22%),
+    #020202;
+}
+.bg-mesh{
+  background:
+    linear-gradient(115deg,transparent 0 47%,rgba(255,31,45,.16) 47.3%,transparent 48.2% 51%,rgba(255,31,45,.09) 51.3%,transparent 52.2%),
+    radial-gradient(ellipse 60% 35% at 75% 20%,rgba(255,31,45,.10),transparent 65%),
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:auto,auto,64px 64px,64px 64px;
+}
+nav{
+  background:rgba(0,0,0,.86);
+  border-bottom:1px solid rgba(255,255,255,.10);
+}
+nav.scrolled{background:rgba(0,0,0,.96);}
+.nav-logo-img,.foot-logo-img{filter:drop-shadow(0 0 10px rgba(255,31,45,.45));}
+.nav-logo-text{font-size:1.05rem;letter-spacing:-.045em;text-transform:none;}
+.nav-logo-text .acc,.foot-logo-text .acc{background:none;-webkit-text-fill-color:#ff1f2d;color:#ff1f2d;}
+.nav-links a:hover{background:rgba(255,31,45,.08);color:#fff;}
+.nav-cta,.btn-hero-primary,.fsub{box-shadow:0 10px 35px rgba(255,31,45,.32) !important;}
+.ticker{background:rgba(255,31,45,.065);border-bottom:1px solid rgba(255,31,45,.16);}
+.t-item{color:rgba(255,255,255,.68);}
+.hero{grid-template-columns:minmax(0,1fr) 500px;}
+.hero::before{
+  content:'';position:absolute;inset:88px 36px 40px;border:1px solid rgba(255,255,255,.045);
+  background:
+    linear-gradient(120deg,transparent 0 55%,rgba(255,31,45,.10) 55.2%,transparent 57.2%),
+    linear-gradient(120deg,transparent 0 62%,rgba(255,31,45,.18) 62.2%,transparent 63.2%);
+  pointer-events:none;
+}
+.hero-pill,.section-tag{
+  background:rgba(255,31,45,.075);
+  border-color:rgba(255,31,45,.22);
+  color:#ff737b;
+}
+h1{font-size:clamp(3rem,5.2vw,5.6rem);text-transform:none;}
+h1 .grad-text,h2 em,.hkpi-val,.ls-val,.proof-val,.rate-price,.donut-big{
+  background:none;-webkit-text-fill-color:#ff1f2d;color:#ff1f2d;
+  text-shadow:0 0 28px rgba(255,31,45,.18);
+}
+.hero-sub{color:#e2e2e2;}
+.hero-kpis{border-top:1px solid rgba(255,255,255,.11);}
+.hkpi+.hkpi{border-left:1px solid rgba(255,255,255,.10);}
+.visual-wrap{height:500px;}
+.visual-glow{background:radial-gradient(circle,rgba(255,31,45,.28),transparent 70%);}
+.orbital{border-color:rgba(255,31,45,.18);}
+.orbital::before{background:#ff1f2d;box-shadow:0 0 16px #ff1f2d,0 0 32px #ff1f2d;}
+.orbital-2{border-color:rgba(255,255,255,.08);}
+.orbital-2::before{background:#fff;box-shadow:0 0 12px rgba(255,255,255,.8);}
+.photo-spin-ring{
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(255,31,45,.95) 55deg,rgba(255,255,255,.45) 95deg,transparent 155deg,rgba(255,31,45,.55) 285deg,transparent 360deg);
+}
+.photo-frame{border-radius:22px;background:#000;box-shadow:0 0 0 1px rgba(255,31,45,.35),0 34px 90px rgba(0,0,0,.75);}
+.photo-frame img{border-radius:18px;filter:contrast(1.08) saturate(.92) brightness(1.02);}
+.photo-frame::after{background:linear-gradient(to top,#020202,transparent);}
+.float-card,.v-card,.ls-card,.demo-card,.svc,.rate-card,.contact-wrap,.feat,.ch,.proof-strip,.rate-note{
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));
+  border-color:rgba(255,255,255,.10);
+}
+.float-card:hover,.v-card:hover,.ls-card:hover,.demo-card:hover,.svc:hover,.rate-card:hover,.feat:hover,.ch:hover{
+  border-color:rgba(255,31,45,.35);
+  box-shadow:0 22px 60px rgba(0,0,0,.55),0 0 0 1px rgba(255,31,45,.10),0 0 36px rgba(255,31,45,.08);
+}
+.about-section,.stats-section,.work-section{background:#050505;border-color:rgba(255,255,255,.08);}
+.v-badge.new,.svc-hot-pill,.rate-top-badge{background:var(--grad);}
+.v-card:hover .play-btn{background:rgba(255,31,45,.84);border-color:#ff4b55;}
+.abar-fill,.dev-fill{background:var(--grad);}
+.abar-fill.dim{background:rgba(255,31,45,.32);}
+.insight-box{background:rgba(255,31,45,.06);border-color:rgba(255,31,45,.16);}
+.insight-box strong,.svc-link,.rate-note a{color:#ff5963;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(255,31,45,.6);box-shadow:0 0 0 3px rgba(255,31,45,.10);}
+.ico-em{background:rgba(255,31,45,.10);}
+footer{background:#020202;border-color:rgba(255,255,255,.09);}
+@media(max-width:960px){
+  .hero::before{inset:88px 14px 24px;}
+  .hero{grid-template-columns:1fr;}
+}
+
 </style>
 </head>
 <body>
@@ -871,8 +979,8 @@ footer p{color:var(--text);font-size:.76rem;}
       <div class="hero-pill-dot"></div>
       Tech Creator & Reviewer
     </div>
-    <h1>Tech That's<br>Actually <span class="grad-text">Too Good</span><br>to Miss</h1>
-    <p class="hero-sub">Honest reviews, zero fluff. If it's worth your money — or worth skipping — you'll hear it first, in plain English.</p>
+    <h1>Tech That’s<br><span class="grad-text">Too Good</span><br>to Miss</h1>
+    <p class="hero-sub">Reviews, software, budget finds, and productivity tech — clean, practical, and too good to miss.</p>
     <div class="hero-btns">
       <a href="https://youtube.com/@toogoodtech" target="_blank" class="btn-hero-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0C.488 3.45.029 5.804 0 12c.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0C23.512 20.55 23.971 18.196 24 12c-.029-6.185-.484-8.549-4.385-8.816zM9 16V8l8 3.993L9 16z"/></svg>
@@ -1189,7 +1297,7 @@ footer p{color:var(--text);font-size:.76rem;}
       <p>Have a product for a highly engaged tech audience? Want a long-term partnership? I'm all ears.</p>
       <div class="channels">
         <a href="https://youtube.com/@toogoodtech" target="_blank" class="ch"><div class="ch-ico ico-yt">📺</div><div><div class="ch-lbl">YouTube</div><div class="ch-val">@TooGoodTech</div></div></a>
-        <a href="mailto:adamytjames@gmail.com" class="ch"><div class="ch-ico ico-em">✉️</div><div><div class="ch-lbl">Business Email</div><div class="ch-val">adamytjames@gmail.com</div></div></a>
+        <a href="mailto:ajamespt86@gmail.com" class="ch"><div class="ch-ico ico-em">✉️</div><div><div class="ch-lbl">Business Email</div><div class="ch-val">ajamespt86@gmail.com</div></div></a>
         <a href="#contact" class="ch"><div class="ch-ico ico-bz">💼</div><div><div class="ch-lbl">Partnerships</div><div class="ch-val">Use the form →</div></div></a>
       </div>
     </div>
