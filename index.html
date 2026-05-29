@@ -180,7 +180,25 @@ h1 .num{font-family:'JetBrains Mono',monospace;font-weight:500;}
 .photo-frame::after{content:'';position:absolute;bottom:0;left:0;right:0;height:20%;
   background:linear-gradient(to top,var(--bg),transparent);z-index:1;}
 
-/* floating cards on photo */
+/* video settled state — slow cinematic red glow pulse */
+.photo-frame.video-settled{
+  animation:framePulse 3s ease-in-out infinite;
+}
+@keyframes framePulse{
+  0%,100%{
+    box-shadow:
+      0 0 0 2px rgba(255,31,45,.35),
+      0 40px 100px rgba(0,0,0,.7),
+      0 0 25px rgba(255,31,45,.1);
+  }
+  50%{
+    box-shadow:
+      0 0 0 3px rgba(255,31,45,.7),
+      0 40px 100px rgba(0,0,0,.7),
+      0 0 55px rgba(255,31,45,.35),
+      0 0 110px rgba(255,31,45,.12);
+  }
+}
 .fc{position:absolute;z-index:10;
   background:rgba(9,12,24,.94);border:1px solid rgba(255,255,255,.08);
   border-radius:12px;padding:10px 14px;backdrop-filter:blur(20px);
@@ -1153,15 +1171,38 @@ function renderCards(videos){
   });
 }
 
-// ── VIDEO REPLAY every 30 seconds ──
+// ── VIDEO — play once, freeze on last frame, then glow pulse ──
 (function(){
   function initVideo(){
     const vid = document.getElementById('intro-video');
-    if(!vid) return;
+    const frame = document.querySelector('.photo-frame');
+    if(!vid || !frame) return;
+
     vid.addEventListener('ended', ()=>{
-      // pause 30s then replay
-      setTimeout(()=>{ vid.currentTime=0; vid.play(); }, 30000);
+      // Freeze on last frame
+      vid.currentTime = vid.duration - 0.01;
+      vid.pause();
+
+      // Add glow pulse to frame
+      frame.classList.add('video-settled');
+
+      // Slow down the spin ring gradually
+      const ring = document.querySelector('.spin-ring');
+      if(ring){
+        ring.style.transition = 'opacity 2s ease';
+        ring.style.animationDuration = '10s';
+        ring.style.opacity = '0.4';
+      }
+      // Intensify the ambient glow
+      const glow = document.querySelector('.vis-glow');
+      if(glow){
+        glow.style.transition = 'all 2s ease';
+        glow.style.width = '460px';
+        glow.style.height = '460px';
+        glow.style.opacity = '1';
+      }
     });
+
     vid.play().catch(()=>{});
   }
   document.addEventListener('DOMContentLoaded', initVideo);
