@@ -339,26 +339,26 @@ footer p{font-size:.74rem;color:var(--text);}
   <div class="stat-row reveal">
     <div class="stat-card">
       <div class="live-dot-wrap"><div class="ld"></div><div class="lt">Live</div></div>
-      <div class="stat-val" id="s-views">Loading</div>
+      <div class="stat-val" id="s-views">58.7K</div>
       <div class="stat-lbl">Total Views</div>
       <div class="stat-sub">Lifetime total</div>
     </div>
     <div class="stat-card">
       <div class="live-dot-wrap"><div class="ld"></div><div class="lt">Live</div></div>
-      <div class="stat-val" id="s-subs">Loading</div>
+      <div class="stat-val" id="s-subs">153</div>
       <div class="stat-lbl">Subscribers</div>
       <div class="stat-sub">Live from YouTube</div>
     </div>
     <div class="stat-card">
       <div class="live-dot-wrap"><div class="ld"></div><div class="lt">Live</div></div>
-      <div class="stat-val" id="s-vids">Loading</div>
+      <div class="stat-val" id="s-vids">73</div>
       <div class="stat-lbl">Videos Published</div>
       <div class="stat-sub">& counting</div>
     </div>
     <div class="stat-card">
-      <div class="stat-val">7+</div>
-      <div class="stat-lbl">Brand Collaborations</div>
-      <div class="stat-sub">Paid + product collabs</div>
+      <div class="stat-val">3</div>
+      <div class="stat-lbl">Brand Partners</div>
+      <div class="stat-sub">FIFINE · Hume · Stellar</div>
     </div>
   </div>
 
@@ -652,33 +652,6 @@ footer p{font-size:.74rem;color:var(--text);}
 </footer>
 
 <script>
-const API_KEY    = 'AIzaSyARvf8yO_RwV2qNkLy-shRiy6ZUQYQd0FU';
-const CHANNEL_ID = 'UCHPes4lqVxxQ0KG8mNfGcAw';
-function fmtLive(n){
-  if(n===null||n===undefined||n==='') return 'See Channel';
-  n=parseInt(n||0,10); if(Number.isNaN(n)) return 'See Channel';
-  if(n>=1e6)return(n/1e6).toFixed(1).replace(/\.0$/,'')+'M';
-  if(n>=1e3)return(n/1e3).toFixed(1).replace(/\.0$/,'')+'K';
-  return n.toString();
-}
-async function fetchMediaKitStats(){
-  try{
-    const url='https://www.googleapis.com/youtube/v3/channels?part=statistics&id='+encodeURIComponent(CHANNEL_ID)+'&key='+encodeURIComponent(API_KEY);
-    const r=await fetch(url,{cache:'no-store'}); const d=await r.json();
-    if(!r.ok || d.error || !d.items?.length) throw new Error(d.error?.message || 'No channel stats');
-    const s=d.items[0].statistics||{};
-    document.getElementById('s-views').textContent=fmtLive(s.viewCount);
-    document.getElementById('s-subs').textContent=fmtLive(s.subscriberCount);
-    document.getElementById('s-vids').textContent=fmtLive(s.videoCount);
-  }catch(e){
-    console.warn('Media kit stats failed:', e.message);
-    document.getElementById('s-views').textContent='See Channel';
-    document.getElementById('s-subs').textContent='See Channel';
-    document.getElementById('s-vids').textContent='See Channel';
-  }
-}
-document.addEventListener('DOMContentLoaded', fetchMediaKitStats);
-
 // Scroll reveal
 const ro = new IntersectionObserver(e=>{
   e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');ro.unobserve(x.target);}});
