@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>QA report</title>
+<style>
+html,body{margin:0;background:#0d0d10;color:#e6e6e9;font:13px/1.5 ui-monospace,SFMono-Regular,monospace}
+main{padding:18px 20px 60px}
+h1{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#8b8b92;margin:0 0 14px}
+table{border-collapse:collapse;width:100%;margin-bottom:18px}
+th,td{text-align:left;padding:4px 8px;border-bottom:1px solid #24242a;vertical-align:top}
+th{color:#6f6f76;font-weight:400;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.ok{color:#4ade80}.bad{color:#ff6f86}.warn{color:#fbbf24}
+td.note{color:#a3a3a9;max-width:640px;word-break:break-word}
+iframe{position:fixed;left:-6000px;top:0;border:0}
+</style></head><body>
+<main><h1 id="status">Running…</h1><div id="out"></div></main>
+<script>
+const PAGES = ['Home.dc.html','Reviews.dc.html','Partnerships.dc.html','MediaKit.dc.html','About.dc.html','Contact.dc.html'];
+const WIDTHS = [320, 375, 768, 1024, 1440, 2560];
+const rows = [];
+const errors = [];
+
+function load(src, w, h) {
+  return new Promise((res) => {
+    const f = document.createElement('iframe');
+    f.width = w; f.height = h; f.src = src;
+    f.onload = () => setTimeout(() => res(f), 1400);
+    document.body.appendChild(f);
+  });
+}
+
+function lum(c) {
+  const m = /rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?/.exec(c || '');
+  if (!m) return null;
+  if (m[4] !== undefined && Number(m[4]) === 0) return null;
+  const f = [m[1], m[2], m[3]].map((v) => { v = v / 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+  return 0.2126 * f[0] + 0.7152 * f[1] + 0.0722 * f[2];
+}
+function bgOf(el, win) {
+  let n = el;
+  while (n && n !== win.document.documentElement) {
+    const b = win.getComputedStyle(n).backgroundColor;
+    if (lum(b) !== null) return b;
+    n = n.parentElement;
+  }
+  return win.getComputedStyle(win.document.body).backgroundColor;
+}
+
+async function audit(page, w) {
+  const f = await load(page, w, 1200);
+  const win = f.contentWindow, doc = f.contentDocument;
+  win.addEventListener('error', (e) => errors.push(page + ' @' + w + ': ' + e.message));
+  const de = doc.documentElement;
+  const r = { page, w, notes: [] };
+  r.overflow = de.scrollWidth - w;
+  if (r.overflow > 1) {
+    const wide = [...doc.querySelectorAll('body *')].filter((el) => {
+      const b = el.getBoundingClientRect();
+      return b.width > 0 && b.right > w + 1.5;
+    }).slice(0, 3).map((el) => el.tagName.toLowerCase() + (el.className ? '' : '') + ' r=' + Math.round(el.getBoundingClientRect().right));
+    r.notes.push('overflowing: ' + wide.join(' | '));
+  }
+  // contrast collisions on text
+  let low = 0; const lowEx = [];
+  [...doc.querySelectorAll('h1,h2,h3,p,span,a,li,button,label')].forEach((el) => {
+    const t = (el.textContent || '').trim();
+    if (!t || el.children.length > 0) return;
+    const cs = win.getComputedStyle(el);
+    if (cs.visibility === 'hidden' || cs.display === 'none' || Number(cs.opacity) < 0.2) return;
+    const lf = lum(cs.color), lb = lum(bgOf(el, win));
+    if (lf === null || lb === null) return;
+    const ratio = (Math.max(lf, lb) + 0.05) / (Math.min(lf, lb) + 0.05);
+    const size = parseFloat(cs.fontSize);
+    const need = (size >= 24 || (size >= 18.66 && Number(cs.fontWeight) >= 600)) ? 3 : 4.5;
+    if (ratio < need) { low++; if (lowEx.length < 3) lowEx.push(t.slice(0, 28) + ' [' + ratio.toFixed(2) + ':1 ' + Math.round(size) + 'px]'); }
+  });
+  r.lowContrast = low;
+  if (low) r.notes.push('contrast: ' + lowEx.join(' | '));
+  // tiny text
+  r.tiny = [...doc.querySelectorAll('body *')].filter((el) => {
+    const t = (el.textContent || '').trim();
+    return t && el.children.length === 0 && parseFloat(win.getComputedStyle(el).fontSize) < 11;
+  }).length;
+  // small touch targets
+  const small = [...doc.querySelectorAll('a[href],button')].filter((el) => {
+    const b = el.getBoundingClientRect();
+    return b.width > 0 && b.height > 0 && b.height < 40;
+  });
+  r.smallTargets = small.length;
+  if (small.length) r.notes.push('short targets: ' + small.slice(0, 3).map((e) => (e.textContent || '').trim().slice(0, 18) + ' h=' + Math.round(e.getBoundingClientRect().height)).join(' | '));
+  // broken images
+  const imgs = [...doc.images];
+  const broken = imgs.filter((i) => i.complete && i.naturalWidth === 0);
+  r.imgs = imgs.length;
+  r.brokenImgs = broken.length;
+  if (broken.length) r.notes.push('broken img: ' + broken.map((i) => i.src.split('/').pop()).join(', '));
+  // links
+  const hrefs = [...new Set([...doc.querySelectorAll('a[href]')].map((a) => a.getAttribute('href')))];
+  r.links = hrefs.length;
+  r.emptyLinks = hrefs.filter((h) => !h || h === '#').length;
+  r.localLinks = hrefs.filter((h) => /\.dc\.html$/.test(h));
+  // radii + font families in use
+  r.radii = [...new Set([...doc.querySelectorAll('body *')].map((el) => win.getComputedStyle(el).borderTopLeftRadius).filter((v) => v && v !== '0px'))].length;
+  r.fonts = [...new Set([...doc.querySelectorAll('h1,h2,h3,p,span')].map((el) => win.getComputedStyle(el).fontFamily.split(',')[0].replace(/["']/g, '')))].join('+');
+  f.remove();
+  rows.push(r);
+}
+
+(async () => {
+  for (const p of PAGES) for (const w of WIDTHS) await audit(p, w);
+  // local link targets exist?
+  const targets = [...new Set(rows.flatMap((r) => r.localLinks))];
+  const missing = [];
+  for (const t of targets) {
+    try { const res = await fetch(t, { method: 'GET' }); if (!res.ok) missing.push(t + ' ' + res.status); }
+    catch (e) { missing.push(t + ' fetch-fail'); }
+  }
+  // channel-data.json contract
+  let dataNote = '';
+  try {
+    const d = await (await fetch('channel-data.json')).json();
+    dataNote = 'subs ' + d.public.subscriberCount + ' / views ' + d.public.viewCount + ' / videos ' + d.public.videoCount + ' / fetched ' + d.fetchedAt.slice(0, 10);
+  } catch (e) { dataNote = 'MISSING: ' + e.message; }
+
+  const cell = (v, bad) => '<td class="' + (bad ? 'bad' : 'ok') + '">' + v + '</td>';
+  document.getElementById('out').innerHTML =
+    '<table><tr><th>page</th><th>w</th><th>ovf</th><th>contrast</th><th>&lt;11px</th><th>h&lt;40</th><th>imgs</th><th>broken</th><th>links</th><th>radii</th><th>notes</th></tr>' +
+    rows.map((r) => '<tr><td>' + r.page.replace('.dc.html', '') + '</td><td>' + r.w + '</td>' +
+      cell(r.overflow > 1 ? '+' + r.overflow : 'ok', r.overflow > 1) +
+      cell(r.lowContrast, r.lowContrast > 0) +
+      cell(r.tiny, r.tiny > 0) +
+      cell(r.smallTargets, r.smallTargets > 0) +
+      '<td>' + r.imgs + '</td>' + cell(r.brokenImgs, r.brokenImgs > 0) +
+      '<td>' + r.links + (r.emptyLinks ? ' <span class="bad">' + r.emptyLinks + ' empty</span>' : '') + '</td>' +
+      '<td>' + r.radii + '</td><td class="note">' + r.notes.join(' ⁄ ') + '</td></tr>').join('') +
+    '</table><p>fonts: ' + (rows[0] ? rows[0].fonts : '') + '</p>' +
+    '<p>missing local targets: <span class="' + (missing.length ? 'bad' : 'ok') + '">' + (missing.join(', ') || 'none') + '</span></p>' +
+    '<p>channel-data.json: ' + dataNote + '</p>' +
+    '<p>js errors: <span class="' + (errors.length ? 'bad' : 'ok') + '">' + (errors.join(' | ') || 'none') + '</span></p>';
+  document.getElementById('status').textContent = 'Done — ' + rows.length + ' page/width combinations';
+})();
+</script>
+</body></html>

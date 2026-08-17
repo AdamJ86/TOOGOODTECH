@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Reviews — TooGoodTech</title>
+<meta name="description" content="Hands-on TooGoodTech reviews: keyboards, gaming audio, wearables, desk setups and creator gear, each tested before the verdict. Watch the latest reviews on YouTube."/>
+<meta property="og:title" content="Reviews — TooGoodTech"/>
+<meta property="og:description" content="Every recent TooGoodTech review, with real view counts and direct links to YouTube."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://toogoodtech.com/reviews.html"/>
+<link rel="canonical" href="https://toogoodtech.com/reviews.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#08090a;color:#f4f3f1;font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-0.011em;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+a{color:#e5192b;text-decoration:none}
+a:hover{color:#ff8798}
+h1,h2,h3,p{margin:0}
+@keyframes tgtRise{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:none}}
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:520ms;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}
+::view-transition-old(root){animation:tgtVTOut 300ms cubic-bezier(0.16,1,0.3,1) both}
+::view-transition-new(root){animation:tgtVTIn 520ms cubic-bezier(0.16,1,0.3,1) both}
+@keyframes tgtVTOut{to{opacity:0;transform:scale(0.995)}}
+@keyframes tgtVTIn{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:none}}
+::selection{background:rgba(229,25,43,0.32);color:#ffffff}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+<div ref="{{ root }}" style="background:#08090a">
+<dc-import name="Nav" active="reviews" hint-size="100%,56px"></dc-import>
+
+<main id="main">
+
+<section style="position:relative;padding:calc(56px + clamp(52px,9vh,92px)) clamp(16px,4vw,28px) clamp(40px,5vw,64px);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;top:-280px;right:-10%;width:min(1000px,120vw);height:760px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(229,25,43,0.11),transparent 68%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto">
+    <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#ff4d63;margin-bottom:18px;animation:tgtRise .8s cubic-bezier(0.16,1,0.3,1) both">Reviews</div>
+    <h1 style="font-size:clamp(2.6rem,7vw,5.6rem);line-height:0.96;letter-spacing:-0.05em;font-weight:600;max-width:18ch;animation:tgtRise .9s .06s cubic-bezier(0.16,1,0.3,1) both">Everything I've had on the desk lately.</h1>
+    <p style="margin-top:24px;max-width:54ch;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#a3a3a9;font-weight:350;text-wrap:pretty;animation:tgtRise .9s .14s cubic-bezier(0.16,1,0.3,1) both">Nothing here is a spec-sheet read-out. Each review is a product I actually used, with the compromises left in.</p>
+    <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:6px 22px;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#9a9aa1;animation:tgtRise .9s .2s cubic-bezier(0.16,1,0.3,1) both">
+      <span><span data-num="videos">93</span> public videos</span>
+      <span><span data-num="views">98.8K</span> lifetime views</span>
+      <span><a href="https://www.youtube.com/@toogoodtech" target="_blank" rel="noopener" style="color:#c6c6cb;border-bottom:1px solid rgba(255,255,255,0.24)">Full catalogue on YouTube ↗</a></span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 clamp(16px,4vw,28px) clamp(70px,9vw,120px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <a href="{{ featured.url }}" target="_blank" rel="noopener" style="display:block;border-radius:clamp(16px,2vw,28px);overflow:hidden;background:#101113;border:1px solid rgba(255,255,255,0.08);color:#f4f3f1;transition:transform .6s cubic-bezier(0.16,1,0.3,1),border-color .6s cubic-bezier(0.16,1,0.3,1)" style-hover="transform:translateY(-4px);border-color:rgba(255,255,255,0.2);color:#f4f3f1">
+      <div style="position:relative;background:#0e0f11">
+        <img src="{{ featured.thumbMax }}" alt="{{ featured.alt }}" width="1280" height="720" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover"/>
+        <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(8,9,10,0.86),rgba(8,9,10,0.1) 55%,transparent)"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,3vw,44px)">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#ffffff;background:#e5192b;padding:4px 10px;border-radius:999px">Latest review</span>
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#c6c6cb;border:1px solid rgba(255,255,255,0.2);padding:4px 10px;border-radius:999px">{{ featured.category }}</span>
+          </div>
+          <h2 style="font-size:clamp(1.5rem,3.4vw,3rem);line-height:1.08;letter-spacing:-0.045em;font-weight:600;max-width:24ch;text-wrap:pretty">{{ featured.title }}</h2>
+          <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:6px 18px;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#a3a3a9">
+            <span>{{ featured.views }}</span>
+            <span>{{ featured.duration }}</span>
+            <span>{{ featured.ago }}</span>
+            <span style="color:#ff6f86">Watch on YouTube ↗</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section style="background:#f5f4f1;color:#16171a;padding:clamp(70px,9vw,130px) clamp(16px,4vw,28px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(30px,4vw,48px)" data-reveal="up">
+      <h2 style="font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.05;letter-spacing:-0.045em;font-weight:600">Recent reviews</h2>
+      <a href="https://www.youtube.com/@toogoodtech/videos" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;min-height:44px;font-size:15px;font-weight:500;color:#16171a;border-bottom:1px solid rgba(0,0,0,0.2);padding-bottom:2px" style-hover="color:#b01121;border-color:#b01121">See all <span data-num="videos">93</span> on YouTube <span aria-hidden="true">↗</span></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:clamp(14px,1.6vw,20px)">
+      <sc-for list="{{ rest }}" as="v" hint-placeholder-count="5">
+        <a href="{{ v.url }}" target="_blank" rel="noopener" data-reveal="up" data-delay="{{ v.delay }}" style="display:flex;flex-direction:column;background:#ffffff;border-radius:clamp(14px,1.6vw,20px);overflow:hidden;color:#16171a;box-shadow:0 2px 4px rgba(0,0,0,0.03);transition:box-shadow .5s cubic-bezier(0.16,1,0.3,1),transform .5s cubic-bezier(0.16,1,0.3,1)" style-hover="box-shadow:0 26px 64px rgba(0,0,0,0.12);transform:translateY(-5px);color:#16171a">
+          <div style="position:relative;background:#e8e6e2">
+            <img src="{{ v.thumb }}" alt="{{ v.alt }}" loading="lazy" width="480" height="360" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover"/>
+            <span style="position:absolute;bottom:9px;right:9px;font-family:'Geist Mono',ui-monospace,monospace;font-size:10.5px;color:#ffffff;background:rgba(0,0,0,0.72);padding:3px 6px;border-radius:5px">{{ v.duration }}</span>
+          </div>
+          <div style="padding:18px 18px 20px;display:flex;flex-direction:column;flex:1">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#7c7d83;margin-bottom:10px">{{ v.category }}</span>
+            <h3 style="font-size:16.5px;line-height:1.32;letter-spacing:-0.02em;font-weight:550;text-wrap:pretty">{{ v.title }}</h3>
+            <div style="margin-top:auto;padding-top:16px;display:flex;flex-wrap:wrap;gap:14px;font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#6b6c72">
+              <span>{{ v.views }}</span>
+              <span>{{ v.ago }}</span>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+    <p data-reveal="fade" style="margin-top:26px;font-size:13px;line-height:1.7;color:#7c7d83;max-width:80ch">View counts read from a YouTube snapshot dated <span data-snapshot-date="true">Aug 16, 2026</span>. The six most recent uploads are shown here; the full catalogue lives on the channel.</p>
+  </div>
+</section>
+
+<section style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,28px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <div data-reveal="up" style="max-width:44ch;margin-bottom:clamp(30px,4vw,48px)">
+      <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#ff4d63;margin-bottom:14px">What I cover</div>
+      <h2 style="font-size:clamp(1.9rem,4.2vw,3.2rem);line-height:1.05;letter-spacing:-0.045em;font-weight:600">Six lanes, one standard.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:10px">
+      <div data-reveal="scale" style="padding:24px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:17px;font-weight:550;letter-spacing:-0.02em">Keyboards &amp; input</div>
+        <p style="margin-top:8px;font-size:13.5px;line-height:1.6;color:#8b8b92">Switches, sound, latency, and whether the budget option holds up.</p>
+      </div>
+      <div data-reveal="scale" data-delay="60" style="padding:24px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:17px;font-weight:550;letter-spacing:-0.02em">Audio &amp; microphones</div>
+        <p style="margin-top:8px;font-size:13.5px;line-height:1.6;color:#8b8b92">Headsets and mics recorded raw so you can hear the difference yourself.</p>
+      </div>
+      <div data-reveal="scale" data-delay="120" style="padding:24px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:17px;font-weight:550;letter-spacing:-0.02em">Wearables &amp; health tech</div>
+        <p style="margin-top:8px;font-size:13.5px;line-height:1.6;color:#8b8b92">Worn for weeks, compared against what I already trust.</p>
+      </div>
+      <div data-reveal="scale" data-delay="180" style="padding:24px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:17px;font-weight:550;letter-spacing:-0.02em">Desks &amp; displays</div>
+        <p style="margin-top:8px;font-size:13.5px;line-height:1.6;color:#8b8b92">Multi-monitor setups, docks, and the cables nobody warns you about.</p>
+      </div>
+      <div data-reveal="scale" data-delay="240" style="padding:24px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:17px;font-weight:550;letter-spacing:-0.02em">Storage &amp; accessories</div>
+        <p style="margin-top:8px;font-size:13.5px;line-height:1.6;color:#8b8b92">Drives, enclosures, and the software that recovers what you lost.</p>
+      </div>
+      <div data-reveal="scale" data-delay="300" style="padding:24px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:17px;font-weight:550;letter-spacing:-0.02em">Creator gear</div>
+        <p style="margin-top:8px;font-size:13.5px;line-height:1.6;color:#8b8b92">Lighting, capture and streaming kit, judged on what a beginner needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#f5f4f1;color:#16171a;padding:clamp(80px,10vw,140px) clamp(16px,4vw,28px)">
+  <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(24px,4vw,56px);align-items:center">
+    <h2 data-reveal="up" style="font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.04;letter-spacing:-0.045em;font-weight:600;max-width:20ch">Want your product in one of these?</h2>
+    <div data-reveal="up" data-delay="80">
+      <p style="font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.7;color:#55565c;max-width:48ch;text-wrap:pretty">Sponsored reviews follow exactly the same process as the rest — real testing, disclosed placement, honest verdict.</p>
+      <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:12px">
+        <a href="Partnerships.dc.html" style="display:inline-flex;align-items:center;min-height:46px;padding:0 24px;border-radius:999px;background:#e5192b;color:#ffffff;font-size:15px;font-weight:600;transition:background .3s cubic-bezier(0.16,1,0.3,1),transform .3s cubic-bezier(0.16,1,0.3,1)" style-hover="background:#ff3348;color:#ffffff;transform:translateY(-2px)">How partnerships work</a>
+        <a href="Contact.dc.html" style="display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:999px;border:1px solid rgba(0,0,0,0.18);color:#16171a;font-size:15px;font-weight:500;transition:border-color .3s cubic-bezier(0.16,1,0.3,1),background .3s cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(0,0,0,0.4);background:rgba(0,0,0,0.04);color:#16171a">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<dc-import name="Footer" hint-size="100%,340px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SNAPSHOT = [
+  { id: 'iG0tiBATHlQ', title: 'The Walmart Keyboard That Gamers Are Sleeping On | K2 HE', publishedAt: '2026-08-16T21:11:00Z', views: 9, duration: 'PT8M42S' },
+  { id: 't6nAgEWURKE', title: 'This $22 Gaming Headset Is Shockingly Good… But There\u2019s a Catch', publishedAt: '2026-08-10T17:43:13Z', views: 546, duration: 'PT8M40S' },
+  { id: 'h-HXN-outqk', title: 'Hume Band 2.0 Review — A Huge Upgrade, But Not Perfect', publishedAt: '2026-08-06T22:29:57Z', views: 3913, duration: 'PT11M47S' },
+  { id: '_uQBnNE71Ds', title: "I Turned My Laptop Into a Triple Monitor Setup... Here's What Happened", publishedAt: '2026-07-14T17:29:43Z', views: 381, duration: 'PT11M' },
+  { id: 'vyO3QzSO4Gc', title: 'I Tested the Arboleaf Full Body Scale — Worth It?', publishedAt: '2026-06-30T14:48:51Z', views: 860, duration: 'PT10M54S' },
+  { id: 'W-88B2ch21g', title: 'The Best Streaming Setup for Beginners | WORTH IT?', publishedAt: '2026-06-16T21:31:38Z', views: 1300, duration: 'PT11M21S' }
+];
+const CATEGORY = {
+  iG0tiBATHlQ: 'Keyboards', t6nAgEWURKE: 'Audio', 'h-HXN-outqk': 'Wearables',
+  _uQBnNE71Ds: 'Desk Setup', vyO3QzSO4Gc: 'Smart Home', 'W-88B2ch21g': 'Creator Gear'
+};
+
+class Component extends DCLogic {
+  state = { videos: SNAPSHOT };
+  root = React.createRef();
+
+  async componentDidMount() {
+    const el = this.root.current;
+    try {
+      const [motion, site] = await Promise.all([
+        import('./assets/js/motion.js'),
+        import('./assets/js/site-data.js')
+      ]);
+      this.site = site;
+      motion.initReveal(el);
+      motion.initImageFade(el);
+      motion.initParallax(el);
+      const { data } = await site.loadChannelData();
+      site.hydrateNumbers(el, data);
+      if (Array.isArray(data.recentVideos) && data.recentVideos.length) {
+        this.setState({ videos: data.recentVideos }, () => motion.initReveal(el));
+      }
+    } catch (err) {
+      console.warn('TooGoodTech: enhancement skipped —', err.message);
+    }
+  }
+
+  shape(v, i) {
+    const dur = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/.exec(v.duration || '') || [];
+    const mins = (+dur[2] || 0), secs = (+dur[3] || 0);
+    const seconds = Math.floor((Date.now() - new Date(v.publishedAt).getTime()) / 1000);
+    const rel = seconds < 86400 ? Math.max(1, Math.floor(seconds / 3600)) + 'h ago'
+      : seconds < 2592000 ? Math.floor(seconds / 86400) + 'd ago'
+      : seconds < 31536000 ? Math.floor(seconds / 2592000) + 'mo ago'
+      : Math.floor(seconds / 31536000) + 'y ago';
+    const views = v.views > 999 ? (v.views / 1000).toFixed(1).replace(/\.0$/, '') + 'K views'
+      : v.views > 0 ? v.views + ' views' : 'Just published';
+    return {
+      url: 'https://www.youtube.com/watch?v=' + encodeURIComponent(v.id),
+      thumb: 'https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg',
+      thumbMax: 'https://i.ytimg.com/vi/' + v.id + '/maxresdefault.jpg',
+      alt: 'Thumbnail — ' + v.title,
+      title: v.title,
+      category: CATEGORY[v.id] || 'Review',
+      duration: (+dur[1] ? dur[1] + ':' + String(mins).padStart(2, '0') + ':' : mins + ':') + String(secs).padStart(2, '0'),
+      views, ago: rel,
+      delay: String(i * 70)
+    };
+  }
+
+  renderVals() {
+    const list = this.state.videos.map((v, i) => this.shape(v, i));
+    return {
+      root: this.root,
+      featured: list[0] || {},
+      rest: list.slice(1)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

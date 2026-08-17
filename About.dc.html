@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>About AJ — TooGoodTech</title>
+<meta name="description" content="AJ is the creator behind TooGoodTech: hands-on technology reviews built from real use, with the compromises left in. How the channel tests, and how it works with brands."/>
+<meta property="og:title" content="About AJ — TooGoodTech"/>
+<meta property="og:description" content="How TooGoodTech tests technology, and why the verdict always stays with AJ."/>
+<meta property="og:type" content="profile"/>
+<meta property="og:url" content="https://toogoodtech.com/about.html"/>
+<meta property="og:image" content="https://toogoodtech.com/assets/images/aj-studio.webp"/>
+<link rel="canonical" href="https://toogoodtech.com/about.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#08090a;color:#f4f3f1;font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-0.011em;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+a{color:#e5192b;text-decoration:none}
+a:hover{color:#ff8798}
+h1,h2,h3,p,ul,li{margin:0}
+ul{padding:0;list-style:none}
+@keyframes tgtRise{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:none}}
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:520ms;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}
+::view-transition-old(root){animation:tgtVTOut 300ms cubic-bezier(0.16,1,0.3,1) both}
+::view-transition-new(root){animation:tgtVTIn 520ms cubic-bezier(0.16,1,0.3,1) both}
+@keyframes tgtVTOut{to{opacity:0;transform:scale(0.995)}}
+@keyframes tgtVTIn{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:none}}
+::selection{background:rgba(229,25,43,0.32);color:#ffffff}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+<div ref="{{ root }}" style="background:#08090a">
+<dc-import name="Nav" active="about" hint-size="100%,56px"></dc-import>
+
+<main id="main">
+
+<section style="position:relative;padding:calc(56px + clamp(52px,9vh,92px)) clamp(16px,4vw,28px) clamp(50px,7vw,84px);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;top:-300px;left:-5%;width:min(1000px,120vw);height:760px;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(229,25,43,0.10),transparent 68%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto">
+    <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#ff4d63;margin-bottom:18px;animation:tgtRise .8s cubic-bezier(0.16,1,0.3,1) both">About</div>
+    <h1 style="font-size:clamp(2.6rem,7vw,5.6rem);line-height:0.96;letter-spacing:-0.05em;font-weight:600;max-width:17ch;animation:tgtRise .9s .06s cubic-bezier(0.16,1,0.3,1) both">I'd rather be useful than first.</h1>
+    <p style="margin-top:24px;max-width:56ch;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#a3a3a9;font-weight:350;text-wrap:pretty;animation:tgtRise .9s .14s cubic-bezier(0.16,1,0.3,1) both">I'm AJ. TooGoodTech is <span data-num="videos">93</span> videos of me using technology properly and then telling you what I found — including the parts a spec sheet leaves out.</p>
+  </div>
+</section>
+
+<section style="background:#f5f4f1;color:#16171a;padding:clamp(70px,9vw,130px) clamp(16px,4vw,28px)">
+  <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,84px);align-items:start">
+    <div data-reveal="mask" style="border-radius:clamp(16px,2.2vw,28px);overflow:hidden;background:#e8e6e2;box-shadow:0 30px 90px rgba(0,0,0,0.14)">
+      <img src="assets/images/aj-studio.webp" alt="AJ at the TooGoodTech desk setup, mid-review" loading="eager" width="900" height="1100" style="display:block;width:100%;height:auto"/>
+    </div>
+    <div>
+      <h2 data-reveal="up" style="font-size:clamp(1.8rem,3.8vw,2.9rem);line-height:1.06;letter-spacing:-0.045em;font-weight:600;max-width:20ch">The channel is basically my buying process, filmed.</h2>
+      <p data-reveal="up" data-delay="60" style="margin-top:22px;font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.72;color:#55565c;max-width:52ch;text-wrap:pretty">Most reviews start the same way: I need something, I read too much about it, and I still can't tell whether the cheap one is fine. So I get it, use it for real, and film the answer I wish someone had given me.</p>
+      <p data-reveal="up" data-delay="120" style="margin-top:16px;font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.72;color:#55565c;max-width:52ch;text-wrap:pretty">That's why the videos run long. A keyboard sounds different after a month. A budget headset gives something up, and it's my job to find out what. A recovery tool either gets your files back or it doesn't. Those answers take time, and they don't fit in a thirty-second clip.</p>
+      <p data-reveal="up" data-delay="180" style="margin-top:16px;font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.72;color:#55565c;max-width:52ch;text-wrap:pretty">I'm not chasing launch-day coverage or trying to sound like a magazine. I'd rather be the video someone finds three months later, when they're actually about to buy.</p>
+      <div data-reveal="fade" data-delay="240" style="margin-top:28px;display:flex;flex-wrap:wrap;gap:8px">
+        <span style="font-size:13px;color:#3b3c41;background:#ffffff;padding:8px 14px;border-radius:999px">Keyboards &amp; input</span>
+        <span style="font-size:13px;color:#3b3c41;background:#ffffff;padding:8px 14px;border-radius:999px">Audio &amp; microphones</span>
+        <span style="font-size:13px;color:#3b3c41;background:#ffffff;padding:8px 14px;border-radius:999px">Wearables</span>
+        <span style="font-size:13px;color:#3b3c41;background:#ffffff;padding:8px 14px;border-radius:999px">Desks &amp; displays</span>
+        <span style="font-size:13px;color:#3b3c41;background:#ffffff;padding:8px 14px;border-radius:999px">Storage</span>
+        <span style="font-size:13px;color:#3b3c41;background:#ffffff;padding:8px 14px;border-radius:999px">Creator gear</span>
+        <span style="font-size:13px;color:#3b3c41;background:#ffffff;padding:8px 14px;border-radius:999px">Software</span>
+      </div>
+      <a data-reveal="fade" data-delay="300" href="Reviews.dc.html" style="display:inline-flex;align-items:center;gap:7px;margin-top:28px;min-height:44px;font-size:15px;font-weight:500;color:#16171a;border-bottom:1px solid rgba(0,0,0,0.2);padding-bottom:2px" style-hover="color:#b01121;border-color:#b01121">See what I've tested <span aria-hidden="true">›</span></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:clamp(70px,9vw,130px) clamp(16px,4vw,28px)">
+  <div style="max-width:1240px;margin:0 auto">
+    <div data-reveal="up" style="max-width:44ch;margin-bottom:clamp(28px,3.5vw,46px)">
+      <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#ff4d63;margin-bottom:14px">How I work</div>
+      <h2 style="font-size:clamp(1.9rem,4.2vw,3.3rem);line-height:1.05;letter-spacing:-0.045em;font-weight:600">Four rules I don't break.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:10px">
+      <div data-reveal="up" style="padding:28px 26px;border-radius:20px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.13em;color:#ff6f86">01</div>
+        <div style="margin-top:16px;font-size:17.5px;font-weight:550;letter-spacing:-0.025em">Live with it first</div>
+        <p style="margin-top:9px;font-size:14px;line-height:1.7;color:#8b8b92">Nothing gets reviewed from a press release. It goes on my desk, in my ears, or on my wrist until I have an opinion I'd defend.</p>
+      </div>
+      <div data-reveal="up" data-delay="70" style="padding:28px 26px;border-radius:20px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.13em;color:#ff6f86">02</div>
+        <div style="margin-top:16px;font-size:17.5px;font-weight:550;letter-spacing:-0.025em">Show the real thing</div>
+        <p style="margin-top:9px;font-size:14px;line-height:1.7;color:#8b8b92">Raw audio for mics and headsets, real typing for keyboards, actual screens for software. If you can hear or see it, I don't describe it — I show it.</p>
+      </div>
+      <div data-reveal="up" data-delay="140" style="padding:28px 26px;border-radius:20px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.13em;color:#ff6f86">03</div>
+        <div style="margin-top:16px;font-size:17.5px;font-weight:550;letter-spacing:-0.025em">Name the compromise</div>
+        <p style="margin-top:9px;font-size:14px;line-height:1.7;color:#8b8b92">Everything at a price has a catch. Saying it out loud is the whole value of the review — and it's why the good verdicts mean something.</p>
+      </div>
+      <div data-reveal="up" data-delay="210" style="padding:28px 26px;border-radius:20px;background:#101113;border:1px solid rgba(255,255,255,0.07)">
+        <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.13em;color:#ff6f86">04</div>
+        <div style="margin-top:16px;font-size:17.5px;font-weight:550;letter-spacing:-0.025em">Sponsored changes nothing</div>
+        <p style="margin-top:9px;font-size:14px;line-height:1.7;color:#8b8b92">Paid work is disclosed and the verdict stays mine. A brand can review the script; a brand can't rewrite what I thought of the product.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#f5f4f1;color:#16171a;padding:clamp(70px,9vw,130px) clamp(16px,4vw,28px)">
+  <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(26px,4vw,64px);align-items:start">
+    <div data-reveal="up">
+      <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#b01121;margin-bottom:14px">Working with brands</div>
+      <h2 style="font-size:clamp(1.8rem,3.8vw,2.9rem);line-height:1.06;letter-spacing:-0.045em;font-weight:600;max-width:20ch">Eight brands have taken that deal so far.</h2>
+      <p style="margin-top:20px;font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.72;color:#55565c;max-width:50ch;text-wrap:pretty">Five paid campaigns — FIFINE, Hume Health, Stellar Data Recovery, NUBWO and Arboleaf — plus product collaborations with Keychron, Neewer and Sabrent. Each one is disclosed in the video, and each one got the same treatment as an unsponsored review.</p>
+      <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:12px">
+        <a href="Partnerships.dc.html" style="display:inline-flex;align-items:center;min-height:46px;padding:0 24px;border-radius:999px;background:#e5192b;color:#ffffff;font-size:15px;font-weight:600;transition:background .3s cubic-bezier(0.16,1,0.3,1),transform .3s cubic-bezier(0.16,1,0.3,1)" style-hover="background:#ff3348;color:#ffffff;transform:translateY(-2px)">How partnerships work</a>
+        <a href="Contact.dc.html" style="display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:999px;border:1px solid rgba(0,0,0,0.18);color:#16171a;font-size:15px;font-weight:500;transition:border-color .3s cubic-bezier(0.16,1,0.3,1),background .3s cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(0,0,0,0.4);background:rgba(0,0,0,0.04);color:#16171a">Say hello</a>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:10px">
+      <div data-reveal="scale" style="padding:24px;border-radius:18px;background:#ffffff">
+        <div data-num="videos" data-count-to="93" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;letter-spacing:-0.05em;line-height:1">93</div>
+        <div style="margin-top:10px;font-size:13.5px;color:#55565c">Public videos</div>
+      </div>
+      <div data-reveal="scale" data-delay="60" style="padding:24px;border-radius:18px;background:#ffffff">
+        <div data-num="views" data-count-to="98795" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;letter-spacing:-0.05em;line-height:1">98.8K</div>
+        <div style="margin-top:10px;font-size:13.5px;color:#55565c">Lifetime views</div>
+      </div>
+      <div data-reveal="scale" data-delay="120" style="padding:24px;border-radius:18px;background:#ffffff">
+        <div style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;letter-spacing:-0.05em;line-height:1">8</div>
+        <div style="margin-top:10px;font-size:13.5px;color:#55565c">Brand relationships</div>
+      </div>
+      <div data-reveal="scale" data-delay="180" style="padding:24px;border-radius:18px;background:#ffffff">
+        <div style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;letter-spacing:-0.05em;line-height:1">24h</div>
+        <div style="margin-top:10px;font-size:13.5px;color:#55565c">Reply time on enquiries</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<dc-import name="Footer" hint-size="100%,340px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  root = React.createRef();
+  async componentDidMount() {
+    const el = this.root.current;
+    try {
+      const [motion, site] = await Promise.all([
+        import('./assets/js/motion.js'),
+        import('./assets/js/site-data.js')
+      ]);
+      motion.initReveal(el);
+      motion.initImageFade(el);
+      motion.initParallax(el);
+      motion.initCountUps(el, (n, node) =>
+        node.dataset.numStyle === 'full' ? site.fullNum(n) : site.fmt(n));
+      const { data } = await site.loadChannelData();
+      site.hydrateNumbers(el, data);
+    } catch (err) {
+      console.warn('TooGoodTech: enhancement skipped —', err.message);
+    }
+  }
+  renderVals() { return { root: this.root }; }
+}
+
+</script>
+</body>
+</html>

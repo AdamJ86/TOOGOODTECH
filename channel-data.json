@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "source": "YouTube public pages",
+  "channelId": "UCHPes4lqVxxQ0KG8mNfGcAw",
+  "handle": "@toogoodtech",
+  "fetchedAt": "2026-08-16T22:05:37.2429729Z",
+  "public": {
+    "title": "Too Good Tech",
+    "subscriberCount": 332,
+    "viewCount": 98795,
+    "videoCount": 93
+  },
+  "creatorAnalytics": {
+    "source": "YouTube Studio",
+    "snapshotLabel": "Creator-provided Studio snapshot",
+    "uniqueViewersLast28Days": 9100,
+    "age": {
+      "13-17": 6.2,
+      "18-24": 8.7,
+      "25-34": 36.1,
+      "35-44": 30.3,
+      "45-54": 11.0,
+      "55-64": 3.9,
+      "65+": 4.0
+    },
+    "gender": {
+      "male": 82.3,
+      "female": 17.7
+    },
+    "device": {
+      "tv": 39.4,
+      "desktop": 34.9,
+      "mobile": 20.6,
+      "tablet": 5.0
+    },
+    "geographyLast28Days": {
+      "United States": 40.4,
+      "United Kingdom": 8.5,
+      "Canada": 3.9,
+      "Australia": 2.4,
+      "India": 2.2
+    },
+    "geographyMetric": "Views",
+    "geographyWindow": "Last 28 days",
+    "geographyContentFilter": "All",
+    "geographyCapturedAt": "2026-08-12",
+    "audienceType": {
+      "new": 98.8,
+      "casual": 1.1
+    }
+  },
+  "brandProof": {
+    "paidPartnerships": 5,
+    "paidPartnerNames": [
+      "FIFINE",
+      "Hume Health",
+      "Stellar Data Recovery",
+      "NUBWO",
+      "Arboleaf"
+    ],
+    "productCollaborations": 3,
+    "productCollaborationNames": [
+      "Keychron",
+      "Neewer",
+      "Sabrent"
+    ],
+    "featuredCampaign": {
+      "brand": "Hume Health",
+      "videoId": "h-HXN-outqk",
+      "title": "Hume Band 2.0 Review — A Huge Upgrade, But Not Perfect",
+      "publishedAt": "2026-08-06T22:29:57Z",
+      "views": 3913,
+      "likes": 50,
+      "comments": 40
+    }
+  },
+  "recentVideos": [
+    {
+      "id": "iG0tiBATHlQ",
+      "title": "The Walmart Keyboard That Gamers Are Sleeping On | K2 HE",
+      "publishedAt": "2026-08-16T21:11:00Z",
+      "views": 9,
+      "likes": 3,
+      "comments": 0,
+      "duration": "PT8M42S"
+    },
+    {
+      "id": "t6nAgEWURKE",
+      "title": "This $22 Gaming Headset Is Shockingly Good… But There’s a Catch",
+      "publishedAt": "2026-08-10T17:43:13Z",
+      "views": 546,
+      "likes": 8,
+      "comments": 19,
+      "duration": "PT8M40S"
+    },
+    {
+      "id": "h-HXN-outqk",
+      "title": "Hume Band 2.0 Review — A Huge Upgrade, But Not Perfect",
+      "publishedAt": "2026-08-06T22:29:57Z",
+      "views": 3913,
+      "likes": 50,
+      "comments": 40,
+      "duration": "PT11M47S"
+    },
+    {
+      "id": "_uQBnNE71Ds",
+      "title": "I Turned My Laptop Into a Triple Monitor Setup... Here's What Happened",
+      "publishedAt": "2026-07-14T17:29:43Z",
+      "views": 381,
+      "likes": 13,
+      "comments": 14,
+      "duration": "PT11M"
+    },
+    {
+      "id": "vyO3QzSO4Gc",
+      "title": "I Tested the Arboleaf Full Body Scale — Worth It?",
+      "publishedAt": "2026-06-30T14:48:51Z",
+      "views": 860,
+      "likes": 15,
+      "comments": 14,
+      "duration": "PT10M54S"
+    },
+    {
+      "id": "W-88B2ch21g",
+      "title": "The Best Streaming Setup for Beginners | WORTH IT?",
+      "publishedAt": "2026-06-16T21:31:38Z",
+      "views": 1300,
+      "likes": 25,
+      "comments": 34,
+      "duration": "PT11M21S"
+    }
+  ]
+}

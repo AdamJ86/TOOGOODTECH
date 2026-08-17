@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<footer ref="{{ root }}" style="background:#08090a;border-top:1px solid rgba(255,255,255,0.07);padding:clamp(48px,7vw,76px) clamp(16px,4vw,28px) 40px;color:#8b8b92;font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif">
+  <div style="max-width:1240px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:clamp(28px,4vw,56px);align-items:start">
+      <div style="max-width:300px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <img src="assets/images/logo.png" alt="" width="41" height="25" style="height:25px;width:auto;display:block"/>
+          <span style="font-size:16px;font-weight:600;letter-spacing:-0.03em;color:#f4f3f1">TooGood<span style="color:#ff4d63">Tech</span></span>
+        </div>
+        <p style="margin:0;font-size:13.5px;line-height:1.65;color:#8b8b92">Hands-on technology reviews by AJ. Honest testing, clear verdicts, and sponsor work that respects the audience.</p>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:#93939a;margin-bottom:14px">Site</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <a href="Home.dc.html" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">Home</a>
+          <a href="Reviews.dc.html" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">Reviews</a>
+          <a href="Partnerships.dc.html" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">Partnerships</a>
+          <a href="MediaKit.dc.html" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">Media Kit</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:#93939a;margin-bottom:14px">More</div>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <a href="About.dc.html" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">About AJ</a>
+          <a href="Contact.dc.html" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">Contact</a>
+          <a href="https://www.youtube.com/@toogoodtech" target="_blank" rel="noopener" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">YouTube channel ↗</a>
+          <a href="mailto:partnerships@toogoodtech.com" style="font-size:13.5px;color:#c6c6cb;min-height:38px;display:flex;align-items:center" style-hover="color:#ffffff">partnerships@toogoodtech.com</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:#93939a;margin-bottom:14px">Partnerships</div>
+        <p style="margin:0 0 16px;font-size:13.5px;line-height:1.6;color:#8b8b92">Open for Q3 and Q4 campaigns. Replies within 24 hours.</p>
+        <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#ffffff;background:#e5192b;padding:10px 18px;border-radius:999px" style-hover="background:#ff3348;color:#ffffff">Start a partnership</a>
+      </div>
+    </div>
+    <div style="margin-top:clamp(36px,5vw,58px);padding-top:22px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-wrap:wrap;gap:10px 24px;align-items:baseline;justify-content:space-between">
+      <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.04em;color:#93939a">© 2026 TooGoodTech · toogoodtech.com</p>
+      <p style="margin:0;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.04em;color:#93939a">Channel metrics verified <span data-snapshot-date="true">Aug 16, 2026</span> · public YouTube snapshot</p>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  root = React.createRef();
+  async componentDidMount() {
+    try {
+      const mod = await import('./assets/js/site-data.js');
+      const { data } = await mod.loadChannelData();
+      const label = mod.longDate(data.fetchedAt);
+      if (label && this.root.current) {
+        this.root.current.querySelectorAll('[data-snapshot-date]').forEach((el) => { el.textContent = label; });
+      }
+    } catch (e) { /* keep the printed snapshot label */ }
+  }
+  renderVals() { return { root: this.root }; }
+}
+
+</script>
+</body>
+</html>

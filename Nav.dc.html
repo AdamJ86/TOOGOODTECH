@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#08090a;color:#f4f3f1;font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-0.011em;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+a{color:#e5192b;text-decoration:none}
+a:hover{color:#ff8798}
+img,video{max-width:100%}
+@keyframes tgtRise{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:none}}
+@keyframes tgtFade{from{opacity:0}to{opacity:1}}
+@keyframes tgtMask{from{clip-path:inset(0 0 100% 0);opacity:0}to{clip-path:inset(0 0 0 0);opacity:1}}
+@keyframes tgtPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+@media print{nav,.tgt-nav{display:none!important}}
+</style>
+</helmet>
+<a href="#main" style="position:absolute;left:-9999px;top:0;z-index:1200;padding:12px 18px;background:#f4f3f1;color:#08090a;border-radius:0 0 10px 0;font-size:13px;font-weight:600" style-focus="left:0">Skip to content</a>
+<nav class="tgt-nav" ref="{{ navRef }}" aria-label="Primary" style="position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(8,9,10,0.72);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(255,255,255,0.07);transition:background .4s cubic-bezier(0.16,1,0.3,1),border-color .4s cubic-bezier(0.16,1,0.3,1)">
+  <div style="max-width:1240px;margin:0 auto;height:56px;padding:0 clamp(16px,4vw,28px);display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <a href="Home.dc.html" aria-label="TooGoodTech — home" style="display:flex;align-items:center;gap:10px;color:#f4f3f1;text-decoration:none;min-height:44px" style-hover="color:#ffffff">
+      <img src="assets/images/logo.png" alt="" width="36" height="22" style="height:22px;width:auto;display:block"/>
+      <span style="font-size:15px;font-weight:600;letter-spacing:-0.03em">TooGood<span style="color:#ff4d63">Tech</span></span>
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;gap:2px">
+        <a href="Reviews.dc.html" data-page="reviews" style="font-size:13px;font-weight:450;color:#a3a3a9;padding:0 13px;min-height:44px;display:inline-flex;align-items:center;border-radius:8px;transition:color .25s cubic-bezier(0.16,1,0.3,1)" style-hover="color:#f4f3f1">Reviews</a>
+        <a href="Partnerships.dc.html" data-page="partnerships" style="font-size:13px;font-weight:450;color:#a3a3a9;padding:0 13px;min-height:44px;display:inline-flex;align-items:center;border-radius:8px;transition:color .25s cubic-bezier(0.16,1,0.3,1)" style-hover="color:#f4f3f1">Partnerships</a>
+        <a href="MediaKit.dc.html" data-page="mediakit" style="font-size:13px;font-weight:450;color:#a3a3a9;padding:0 13px;min-height:44px;display:inline-flex;align-items:center;border-radius:8px;transition:color .25s cubic-bezier(0.16,1,0.3,1)" style-hover="color:#f4f3f1">Media Kit</a>
+        <a href="About.dc.html" data-page="about" style="font-size:13px;font-weight:450;color:#a3a3a9;padding:0 13px;min-height:44px;display:inline-flex;align-items:center;border-radius:8px;transition:color .25s cubic-bezier(0.16,1,0.3,1)" style-hover="color:#f4f3f1">About</a>
+        <a href="https://www.youtube.com/@toogoodtech" target="_blank" rel="noopener" style="font-size:13px;font-weight:450;color:#a3a3a9;padding:0 13px;min-height:44px;display:inline-flex;align-items:center;border-radius:8px;transition:color .25s cubic-bezier(0.16,1,0.3,1)" style-hover="color:#f4f3f1">Channel</a>
+        <a href="Contact.dc.html" data-page="contact" style="margin-left:10px;font-size:13px;font-weight:600;color:#ffffff;background:#e5192b;min-height:40px;padding:0 18px;display:inline-flex;align-items:center;border-radius:999px;transition:background .25s cubic-bezier(0.16,1,0.3,1),transform .25s cubic-bezier(0.16,1,0.3,1)" style-hover="background:#ff3348;color:#ffffff;transform:translateY(-1px)" style-active="transform:translateY(0)">Start a partnership</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:8px">
+        <a href="Contact.dc.html" style="font-size:13px;font-weight:600;color:#ffffff;background:#e5192b;min-height:44px;padding:0 17px;display:inline-flex;align-items:center;border-radius:999px" style-hover="background:#ff3348;color:#ffffff">Partner</a>
+        <button type="button" onClick="{{ toggle }}" aria-label="Menu" aria-expanded="{{ openStr }}" style="width:44px;height:44px;display:grid;place-items:center;background:transparent;border:1px solid rgba(255,255,255,0.12);border-radius:10px;color:#f4f3f1;cursor:pointer" style-hover="border-color:rgba(255,255,255,0.28)">
+          <span style="display:block;width:16px;height:9px;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor"></span>
+        </button>
+      </div>
+    </sc-if>
+  </div>
+  <sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid rgba(255,255,255,0.07);background:rgba(8,9,10,0.97);padding:10px clamp(16px,4vw,28px) 22px;display:flex;flex-direction:column;animation:tgtFade .3s cubic-bezier(0.16,1,0.3,1) both">
+      <a href="Home.dc.html" style="font-size:19px;font-weight:500;color:#f4f3f1;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06)" style-hover="color:#ffffff">Home</a>
+      <a href="Reviews.dc.html" style="font-size:19px;font-weight:500;color:#f4f3f1;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06)" style-hover="color:#ffffff">Reviews</a>
+      <a href="Partnerships.dc.html" style="font-size:19px;font-weight:500;color:#f4f3f1;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06)" style-hover="color:#ffffff">Partnerships</a>
+      <a href="MediaKit.dc.html" style="font-size:19px;font-weight:500;color:#f4f3f1;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06)" style-hover="color:#ffffff">Media Kit</a>
+      <a href="About.dc.html" style="font-size:19px;font-weight:500;color:#f4f3f1;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06)" style-hover="color:#ffffff">About</a>
+      <a href="Contact.dc.html" style="font-size:19px;font-weight:500;color:#f4f3f1;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.06)" style-hover="color:#ffffff">Contact</a>
+      <a href="https://www.youtube.com/@toogoodtech" target="_blank" rel="noopener" style="font-size:19px;font-weight:500;color:#a3a3a9;padding:14px 0" style-hover="color:#f4f3f1">YouTube channel ↗</a>
+    </div>
+  </sc-if>
+</nav>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;reviews&quot;,&quot;partnerships&quot;,&quot;mediakit&quot;,&quot;about&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { narrow: false, open: false, ready: false };
+  navRef = React.createRef();
+
+  componentDidMount() {
+    this.mq = window.matchMedia('(max-width: 940px)');
+    this.onMq = () => this.setState({ narrow: this.mq.matches, open: false });
+    this.mq.addEventListener('change', this.onMq);
+    this.setState({ narrow: this.mq.matches, ready: true }, () => this.markActive());
+
+    this.onScroll = () => {
+      const el = this.navRef.current;
+      if (!el) return;
+      const past = window.scrollY > 24;
+      el.style.background = past ? 'rgba(8,9,10,0.92)' : 'rgba(8,9,10,0.72)';
+      el.style.borderBottomColor = past ? 'rgba(255,255,255,0.11)' : 'rgba(255,255,255,0.07)';
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.onScroll();
+
+    import('./assets/js/motion.js')
+      .then((m) => m.initNavAutoHide(this.navRef.current, () => this.state.open))
+      .catch(() => {});
+
+    this.onKey = (e) => { if (e.key === 'Escape' && this.state.open) this.setState({ open: false }); };
+    document.addEventListener('keydown', this.onKey);
+  }
+
+  componentDidUpdate() { this.markActive(); }
+
+  componentWillUnmount() {
+    this.mq?.removeEventListener('change', this.onMq);
+    window.removeEventListener('scroll', this.onScroll);
+    document.removeEventListener('keydown', this.onKey);
+  }
+
+  markActive() {
+    const active = this.props.active;
+    if (!active || !this.navRef.current) return;
+    this.navRef.current.querySelectorAll('[data-page]').forEach((a) => {
+      if (a.dataset.page === active) {
+        a.setAttribute('aria-current', 'page');
+        if (active !== 'contact') a.style.color = '#f4f3f1';
+      }
+    });
+  }
+
+  renderVals() {
+    return {
+      navRef: this.navRef,
+      narrow: this.state.ready && this.state.narrow,
+      wide: !this.state.ready || !this.state.narrow,
+      open: this.state.open,
+      openStr: this.state.open ? 'true' : 'false',
+      toggle: () => this.setState((s) => ({ open: !s.open }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>

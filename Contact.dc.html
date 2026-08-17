@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Contact — TooGoodTech</title>
+<meta name="description" content="Start a partnership with TooGoodTech. Send the product, the goal and your timing — every enquiry gets a reply within 24 hours, including the ones AJ turns down."/>
+<meta property="og:title" content="Contact — TooGoodTech"/>
+<meta property="og:description" content="Partnership enquiries, product review requests and general questions for AJ at TooGoodTech."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://toogoodtech.com/contact.html"/>
+<link rel="canonical" href="https://toogoodtech.com/contact.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#08090a;color:#f4f3f1;font-family:'Geist',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-0.011em;overflow-x:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+a{color:#e5192b;text-decoration:none}
+a:hover{color:#ff8798}
+h1,h2,h3,p,ul,li{margin:0}
+ul{padding:0;list-style:none}
+input,select,textarea,button{font-family:inherit}
+input::placeholder,textarea::placeholder{color:#93939a}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none;border-color:rgba(229,25,43,0.7)!important;box-shadow:0 0 0 3px rgba(229,25,43,0.22)}
+a:focus-visible,button:focus-visible{outline:2px solid #ff3348;outline-offset:3px}
+input:invalid:not(:placeholder-shown){border-color:rgba(229,25,43,0.55)!important}
+@keyframes tgtRise{from{opacity:0;transform:translate3d(0,26px,0)}to{opacity:1;transform:none}}
+@keyframes tgtSpin{to{transform:rotate(360deg)}}
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:520ms;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}
+::view-transition-old(root){animation:tgtVTOut 300ms cubic-bezier(0.16,1,0.3,1) both}
+::view-transition-new(root){animation:tgtVTIn 520ms cubic-bezier(0.16,1,0.3,1) both}
+@keyframes tgtVTOut{to{opacity:0;transform:scale(0.995)}}
+@keyframes tgtVTIn{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:none}}
+::selection{background:rgba(229,25,43,0.32);color:#ffffff}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none!important}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+<div ref="{{ root }}" style="background:#08090a;min-height:100vh">
+<dc-import name="Nav" active="contact" hint-size="100%,56px"></dc-import>
+
+<main id="main">
+
+<section style="position:relative;padding:calc(56px + clamp(46px,8vh,84px)) clamp(16px,4vw,28px) clamp(70px,9vw,120px);overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;top:-320px;left:50%;width:min(1200px,140vw);height:820px;transform:translateX(-50%);background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(229,25,43,0.11),transparent 68%);pointer-events:none"></div>
+  <div style="position:relative;max-width:1240px;margin:0 auto">
+    <div style="max-width:60ch;margin-bottom:clamp(34px,4.5vw,56px)">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;animation:tgtRise .8s cubic-bezier(0.16,1,0.3,1) both">
+        <span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:#34c77b"></span>
+        <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:#9a9aa1">Replies within 24 hours</span>
+      </div>
+      <h1 style="font-size:clamp(2.5rem,6.4vw,5rem);line-height:0.97;letter-spacing:-0.05em;font-weight:600;animation:tgtRise .9s .06s cubic-bezier(0.16,1,0.3,1) both">Let's talk about the product.</h1>
+      <p style="margin-top:22px;font-size:clamp(16px,1.3vw,19px);line-height:1.55;color:#a3a3a9;font-weight:350;text-wrap:pretty;animation:tgtRise .9s .14s cubic-bezier(0.16,1,0.3,1) both">Tell me what it is, who it's for, and what you want out of the campaign. If it isn't a fit I'll say so quickly rather than leave you waiting.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:clamp(18px,2.5vw,32px);align-items:start">
+      <form onSubmit="{{ submit }}" novalidate="" style="padding:clamp(22px,3vw,34px);border-radius:24px;background:#101113;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:14px">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">First name *</span>
+            <input name="first_name" type="text" required="required" autocomplete="given-name" placeholder="Alex" style="min-height:46px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#16171a;color:#f4f3f1;font-size:15px;transition:border-color .25s cubic-bezier(0.16,1,0.3,1)"/>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Last name *</span>
+            <input name="last_name" type="text" required="required" autocomplete="family-name" placeholder="Reid" style="min-height:46px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#16171a;color:#f4f3f1;font-size:15px;transition:border-color .25s cubic-bezier(0.16,1,0.3,1)"/>
+          </label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Work email *</span>
+          <input name="email" type="email" required="required" autocomplete="email" placeholder="you@company.com" style="min-height:46px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#16171a;color:#f4f3f1;font-size:15px;transition:border-color .25s cubic-bezier(0.16,1,0.3,1)"/>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Company or brand *</span>
+          <input name="company" type="text" required="required" autocomplete="organization" placeholder="Your company" style="min-height:46px;padding:0 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#16171a;color:#f4f3f1;font-size:15px;transition:border-color .25s cubic-bezier(0.16,1,0.3,1)"/>
+        </label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:14px">
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Format</span>
+            <select name="service" style="min-height:46px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#16171a;color:#f4f3f1;font-size:15px;cursor:pointer;transition:border-color .25s cubic-bezier(0.16,1,0.3,1)">
+              <option value="">Not sure yet</option>
+              <option>Integrated mention</option>
+              <option>Dedicated segment</option>
+              <option>Full review</option>
+              <option>Multi-video campaign</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:7px">
+            <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Budget range</span>
+            <select name="budget" style="min-height:46px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#16171a;color:#f4f3f1;font-size:15px;cursor:pointer;transition:border-color .25s cubic-bezier(0.16,1,0.3,1)">
+              <option value="">Let's discuss</option>
+              <option>Under $500</option>
+              <option>$500–$1,000</option>
+              <option>$1,000–$2,500</option>
+              <option>$2,500+</option>
+              <option>Product only</option>
+            </select>
+          </label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">The product and the goal *</span>
+          <textarea name="message" required="required" rows="5" placeholder="What is it, who's it for, when do you need it live, and what would make this campaign a win?" style="padding:13px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:#16171a;color:#f4f3f1;font-size:15px;line-height:1.6;resize:vertical;min-height:120px;transition:border-color .25s cubic-bezier(0.16,1,0.3,1)"></textarea>
+        </label>
+        <button type="submit" disabled="{{ busy }}" style="{{ buttonStyle }}" style-hover="{{ buttonHover }}">
+          <sc-if value="{{ busy }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="width:15px;height:15px;border-radius:50%;border:2px solid rgba(255,255,255,0.35);border-top-color:#ffffff;animation:tgtSpin .8s linear infinite;display:inline-block"></span>
+          </sc-if>
+          <span>{{ buttonLabel }}</span>
+        </button>
+        <p aria-live="polite" role="status" style="{{ msgStyle }}">{{ message }}</p>
+        <p style="margin-top:2px;font-size:12.5px;line-height:1.6;color:#9a9aa1">Sent straight to my inbox. No newsletter, no list, no sharing your details. Fields marked * are required.</p>
+      </form>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="mailto:partnerships@toogoodtech.com" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.08);color:#f4f3f1;transition:border-color .3s cubic-bezier(0.16,1,0.3,1),transform .3s cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(255,255,255,0.22);transform:translateY(-2px);color:#ffffff">
+          <span>
+            <span style="display:block;font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Partnerships</span>
+            <span style="display:block;margin-top:5px;font-size:15px;font-weight:500">partnerships@toogoodtech.com</span>
+          </span>
+          <span aria-hidden="true" style="color:#8b8b92">→</span>
+        </a>
+        <a href="mailto:adamytjames@gmail.com" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.08);color:#f4f3f1;transition:border-color .3s cubic-bezier(0.16,1,0.3,1),transform .3s cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(255,255,255,0.22);transform:translateY(-2px);color:#ffffff">
+          <span>
+            <span style="display:block;font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Direct</span>
+            <span style="display:block;margin-top:5px;font-size:15px;font-weight:500">adamytjames@gmail.com</span>
+          </span>
+          <span aria-hidden="true" style="color:#8b8b92">→</span>
+        </a>
+        <a href="https://www.youtube.com/@toogoodtech" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.08);color:#f4f3f1;transition:border-color .3s cubic-bezier(0.16,1,0.3,1),transform .3s cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(255,255,255,0.22);transform:translateY(-2px);color:#ffffff">
+          <span>
+            <span style="display:block;font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Channel</span>
+            <span style="display:block;margin-top:5px;font-size:15px;font-weight:500">@TooGoodTech · <span data-num="videos">93</span> videos</span>
+          </span>
+          <span aria-hidden="true" style="color:#8b8b92">↗</span>
+        </a>
+        <a href="MediaKit.dc.html" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;border-radius:18px;background:#101113;border:1px solid rgba(255,255,255,0.08);color:#f4f3f1;transition:border-color .3s cubic-bezier(0.16,1,0.3,1),transform .3s cubic-bezier(0.16,1,0.3,1)" style-hover="border-color:rgba(255,255,255,0.22);transform:translateY(-2px);color:#ffffff">
+          <span>
+            <span style="display:block;font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#8b8b92">Before you write</span>
+            <span style="display:block;margin-top:5px;font-size:15px;font-weight:500">Audience data and formats</span>
+          </span>
+          <span aria-hidden="true" style="color:#8b8b92">→</span>
+        </a>
+        <div style="padding:22px;border-radius:18px;background:rgba(229,25,43,0.07);border:1px solid rgba(229,25,43,0.2)">
+          <div style="font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:#ff6f86">What happens next</div>
+          <p style="margin-top:12px;font-size:14px;line-height:1.7;color:#c6c6cb">I read every message myself. Expect a reply within 24 hours with either a format suggestion and a scope, or a straight no with the reason. If it's a yes, we agree deliverables and dates before anything is filmed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<dc-import name="Footer" hint-size="100%,340px"></dc-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ENDPOINT = 'https://formspree.io/f/mjglwkgw';
+const BASE = 'display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;margin-top:4px;padding:0 26px;border-radius:999px;border:none;font-size:15.5px;font-weight:600;cursor:pointer;transition:background .3s cubic-bezier(0.16,1,0.3,1),transform .3s cubic-bezier(0.16,1,0.3,1),opacity .3s';
+
+class Component extends DCLogic {
+  state = { status: 'idle', message: '' };
+  root = React.createRef();
+
+  async componentDidMount() {
+    const el = this.root.current;
+    try {
+      const [motion, site] = await Promise.all([
+        import('./assets/js/motion.js'),
+        import('./assets/js/site-data.js')
+      ]);
+      motion.initReveal(el);
+      motion.initImageFade(el);
+      motion.initParallax(el);
+      const { data } = await site.loadChannelData();
+      site.hydrateNumbers(el, data);
+    } catch (err) {
+      console.warn('TooGoodTech: enhancement skipped —', err.message);
+    }
+  }
+
+  submit = async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      this.setState({ status: 'error', message: 'Check the highlighted fields — a name, work email, company and message are needed.' });
+      const bad = form.querySelector(':invalid');
+      if (bad) bad.focus();
+      return;
+    }
+    if (this.state.status === 'sending') return;
+    this.setState({ status: 'sending', message: '' });
+    const body = Object.fromEntries(new FormData(form).entries());
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (!res.ok) throw new Error('Formspree responded ' + res.status);
+      form.reset();
+      this.setState({ status: 'success', message: 'Got it — I read these myself and you will hear back within 24 hours.' });
+      this.timer = setTimeout(() => this.setState({ status: 'idle', message: '' }), 9000);
+    } catch (err) {
+      console.warn('TooGoodTech: form submission failed —', err.message);
+      this.setState({
+        status: 'error',
+        message: 'That did not go through. Email partnerships@toogoodtech.com directly and it will reach me.'
+      });
+    }
+  };
+
+  componentWillUnmount() { clearTimeout(this.timer); }
+
+  renderVals() {
+    const s = this.state.status;
+    const busy = s === 'sending';
+    const bg = s === 'success' ? '#1f7a4d' : '#e5192b';
+    const label = busy ? 'Sending…' : s === 'success' ? 'Enquiry sent' : 'Send partnership enquiry';
+    const msgBase = 'margin:0;font-size:13.5px;line-height:1.6;padding:12px 14px;border-radius:12px;';
+    const msgStyle = !this.state.message ? 'display:none'
+      : s === 'success'
+        ? msgBase + 'display:block;background:rgba(31,122,77,0.14);border:1px solid rgba(52,199,123,0.35);color:#7fe0ab'
+        : msgBase + 'display:block;background:rgba(229,25,43,0.12);border:1px solid rgba(229,25,43,0.35);color:#ff9aac';
+    return {
+      root: this.root,
+      submit: this.submit,
+      busy,
+      buttonLabel: label,
+      buttonStyle: BASE + 'background:' + bg + ';color:#ffffff' + (busy ? ';opacity:.75;cursor:progress' : ''),
+      buttonHover: busy || s === 'success' ? '' : 'background:#ff3348;transform:translateY(-2px)',
+      message: this.state.message,
+      msgStyle
+    };
+  }
+}
+
+</script>
+</body>
+</html>
