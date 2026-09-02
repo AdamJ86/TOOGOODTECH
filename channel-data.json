@@ -3,12 +3,12 @@
   "source": "YouTube public pages",
   "channelId": "UCHPes4lqVxxQ0KG8mNfGcAw",
   "handle": "@toogoodtech",
-  "fetchedAt": "2026-08-16T22:05:37.2429729Z",
+  "fetchedAt": "2026-09-02T14:32:16Z",
   "public": {
     "title": "Too Good Tech",
-    "subscriberCount": 332,
-    "viewCount": 98795,
-    "videoCount": 93
+    "subscriberCount": 400,
+    "viewCount": 113521,
+    "videoCount": 94
   },
   "creatorAnalytics": {
     "source": "YouTube Studio",
@@ -69,27 +69,36 @@
       "videoId": "h-HXN-outqk",
       "title": "Hume Band 2.0 Review — A Huge Upgrade, But Not Perfect",
       "publishedAt": "2026-08-06T22:29:57Z",
-      "views": 3913,
-      "likes": 50,
+      "views": 11681,
+      "likes": 129,
       "comments": 40
     }
   },
   "recentVideos": [
     {
+      "id": "2pP-SNxUZps",
+      "title": "Wireless XLR Actually Works?! Xvive U35 Review",
+      "publishedAt": "2026-08-25T18:51:43Z",
+      "views": 813,
+      "likes": 14,
+      "comments": 0,
+      "duration": "PT12M58S"
+    },
+    {
       "id": "iG0tiBATHlQ",
-      "title": "The Walmart Keyboard That Gamers Are Sleeping On | K2 HE",
+      "title": "Keychron K2 HE Review — This Thing Is Ridiculously Good",
       "publishedAt": "2026-08-16T21:11:00Z",
-      "views": 9,
-      "likes": 3,
+      "views": 573,
+      "likes": 8,
       "comments": 0,
       "duration": "PT8M42S"
     },
     {
       "id": "t6nAgEWURKE",
-      "title": "This $22 Gaming Headset Is Shockingly Good… But There’s a Catch",
+      "title": "NUBWO HG04L Review: Is This $22 Gaming Headset Worth It?",
       "publishedAt": "2026-08-10T17:43:13Z",
-      "views": 546,
-      "likes": 8,
+      "views": 601,
+      "likes": 12,
       "comments": 19,
       "duration": "PT8M40S"
     },
@@ -97,8 +106,8 @@
       "id": "h-HXN-outqk",
       "title": "Hume Band 2.0 Review — A Huge Upgrade, But Not Perfect",
       "publishedAt": "2026-08-06T22:29:57Z",
-      "views": 3913,
-      "likes": 50,
+      "views": 11681,
+      "likes": 129,
       "comments": 40,
       "duration": "PT11M47S"
     },
@@ -106,7 +115,7 @@
       "id": "_uQBnNE71Ds",
       "title": "I Turned My Laptop Into a Triple Monitor Setup... Here's What Happened",
       "publishedAt": "2026-07-14T17:29:43Z",
-      "views": 381,
+      "views": 385,
       "likes": 13,
       "comments": 14,
       "duration": "PT11M"
@@ -115,19 +124,10 @@
       "id": "vyO3QzSO4Gc",
       "title": "I Tested the Arboleaf Full Body Scale — Worth It?",
       "publishedAt": "2026-06-30T14:48:51Z",
-      "views": 860,
-      "likes": 15,
+      "views": 1296,
+      "likes": 20,
       "comments": 14,
       "duration": "PT10M54S"
-    },
-    {
-      "id": "W-88B2ch21g",
-      "title": "The Best Streaming Setup for Beginners | WORTH IT?",
-      "publishedAt": "2026-06-16T21:31:38Z",
-      "views": 1300,
-      "likes": 25,
-      "comments": 34,
-      "duration": "PT11M21S"
     }
   ]
 }
