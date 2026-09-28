@@ -3,12 +3,12 @@
   "source": "YouTube public pages",
   "channelId": "UCHPes4lqVxxQ0KG8mNfGcAw",
   "handle": "@toogoodtech",
-  "fetchedAt": "2026-09-02T14:32:16Z",
+  "fetchedAt": "2026-09-28T20:11:22.951Z",
   "public": {
     "title": "Too Good Tech",
-    "subscriberCount": 400,
-    "viewCount": 113521,
-    "videoCount": 94
+    "subscriberCount": 442,
+    "viewCount": 139460,
+    "videoCount": 109
   },
   "creatorAnalytics": {
     "source": "YouTube Studio",
@@ -19,9 +19,9 @@
       "18-24": 8.7,
       "25-34": 36.1,
       "35-44": 30.3,
-      "45-54": 11.0,
+      "45-54": 11,
       "55-64": 3.9,
-      "65+": 4.0
+      "65+": 4
     },
     "gender": {
       "male": 82.3,
@@ -31,7 +31,7 @@
       "tv": 39.4,
       "desktop": 34.9,
       "mobile": 20.6,
-      "tablet": 5.0
+      "tablet": 5
     },
     "geographyLast28Days": {
       "United States": 40.4,
@@ -69,65 +69,65 @@
       "videoId": "h-HXN-outqk",
       "title": "Hume Band 2.0 Review — A Huge Upgrade, But Not Perfect",
       "publishedAt": "2026-08-06T22:29:57Z",
-      "views": 11681,
-      "likes": 129,
-      "comments": 40
+      "views": 20710,
+      "likes": 175,
+      "comments": 62
     }
   },
   "recentVideos": [
     {
+      "id": "x_xKpzu8_wQ",
+      "title": "This Toothbrush Can Actually SEE Plaque?! USmile D50 Review",
+      "publishedAt": "2026-09-28T19:14:17Z",
+      "views": 16,
+      "likes": 5,
+      "comments": 7,
+      "duration": "PT5M25S"
+    },
+    {
+      "id": "P9wPVeOf2tY",
+      "title": "NEEWER NR01 144FT Outdoor String Lights Review & Installation",
+      "publishedAt": "2026-09-12T00:15:40Z",
+      "views": 408,
+      "likes": 3,
+      "comments": 4,
+      "duration": "PT8M19S"
+    },
+    {
       "id": "2pP-SNxUZps",
       "title": "Wireless XLR Actually Works?! Xvive U35 Review",
       "publishedAt": "2026-08-25T18:51:43Z",
-      "views": 813,
-      "likes": 14,
-      "comments": 0,
+      "views": 972,
+      "likes": 15,
+      "comments": 19,
       "duration": "PT12M58S"
     },
     {
       "id": "iG0tiBATHlQ",
       "title": "Keychron K2 HE Review — This Thing Is Ridiculously Good",
       "publishedAt": "2026-08-16T21:11:00Z",
-      "views": 573,
-      "likes": 8,
-      "comments": 0,
+      "views": 875,
+      "likes": 12,
+      "comments": 18,
       "duration": "PT8M42S"
     },
     {
       "id": "t6nAgEWURKE",
       "title": "NUBWO HG04L Review: Is This $22 Gaming Headset Worth It?",
       "publishedAt": "2026-08-10T17:43:13Z",
-      "views": 601,
-      "likes": 12,
-      "comments": 19,
+      "views": 695,
+      "likes": 13,
+      "comments": 24,
       "duration": "PT8M40S"
     },
     {
       "id": "h-HXN-outqk",
       "title": "Hume Band 2.0 Review — A Huge Upgrade, But Not Perfect",
       "publishedAt": "2026-08-06T22:29:57Z",
-      "views": 11681,
-      "likes": 129,
-      "comments": 40,
+      "views": 20710,
+      "likes": 175,
+      "comments": 62,
       "duration": "PT11M47S"
-    },
-    {
-      "id": "_uQBnNE71Ds",
-      "title": "I Turned My Laptop Into a Triple Monitor Setup... Here's What Happened",
-      "publishedAt": "2026-07-14T17:29:43Z",
-      "views": 385,
-      "likes": 13,
-      "comments": 14,
-      "duration": "PT11M"
-    },
-    {
-      "id": "vyO3QzSO4Gc",
-      "title": "I Tested the Arboleaf Full Body Scale — Worth It?",
-      "publishedAt": "2026-06-30T14:48:51Z",
-      "views": 1296,
-      "likes": 20,
-      "comments": 14,
-      "duration": "PT10M54S"
     }
   ]
 }
